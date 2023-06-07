@@ -1,4 +1,4 @@
-const customers = [
+const sampleCustomers = [
   {
     "id": 1,
     "name": "Leatha Ullrich"
@@ -81,7 +81,7 @@ const customers = [
   }
 ];
 
-const rooms = [
+const sampleRooms = [
   {
     "number": 1,
     "roomType": "residential suite",
@@ -244,7 +244,7 @@ const rooms = [
   }
 ]
 
-const bookings = [
+const sampleBookings = [
   {
     "id": "5fwrgu4i7k55hl6sz",
     "userID": 9,
@@ -373,4 +373,4 @@ const bookings = [
   }
 ]
 
-export { customers, rooms, bookings }
+export { sampleCustomers, sampleRooms, sampleBookings }
