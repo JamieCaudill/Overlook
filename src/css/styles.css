@@ -26,18 +26,18 @@ header {
   padding: 50px;
 }
 
-.main__background {
+/* .main__background {
   /* Add your background image styles here */
-}
+/* } */ */
 
 .main__form__container {
   text-align: center;
   margin-bottom: 30px;
 }
 
-.main__bookings {
+/* .main__bookings {
   /* Add styles for displaying bookings and total spent here */
-}
+/* } */ */
 
 footer {
   background-color: #f2f2f2;
