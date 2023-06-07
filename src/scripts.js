@@ -1,20 +1,22 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
+// SCRIPTS //
 
-// An example of how you tell webpack to use a CSS (SCSS) file
+// IMPORTS //
+
 import './css/styles.css';
-
-// An example of how you tell webpack to use an image 
-// (also need to link to it in the index.html)
 import './images/turing-logo.png'
 
-const fetchCustomers = fetch('http://localhost:3001/api/v1/customers');
-const fetchRooms = fetch('http://localhost:3001/api/v1/rooms');
-const fetchBookings = fetch('http://localhost:3001/api/v1/bookings');
+
+// DATA MODEL //
 
 let customersData = [];
 let roomsData = [];
 let bookingsData = [];
+
+// API CALLS //
+
+const fetchCustomers = fetch('http://localhost:3001/api/v1/customers');
+const fetchRooms = fetch('http://localhost:3001/api/v1/rooms');
+const fetchBookings = fetch('http://localhost:3001/api/v1/bookings');
 
 window.addEventListener('load', () => {
   Promise.all([fetchCustomers, fetchRooms, fetchBookings])
@@ -25,7 +27,6 @@ window.addEventListener('load', () => {
             .then(data => {
               if (response.url.includes('/customers')) {
                 customersData.push(data.customers)
-                console.log(customersData)
               } else if (response.url.includes('/rooms')) {
                 roomsData.push(data.rooms)
               } else if (response.url.includes('/bookings')) {
@@ -45,4 +46,3 @@ window.addEventListener('load', () => {
 
 
 
-console.log('This is the JavaScript entry file - your code begins here.');
