@@ -7,9 +7,45 @@
   <title>Webpack Starter Kit</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
+  <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
+  <header class="header">
+    <div class="header__left">
+      <h1 class="header__text">Overlook</h1>
+    </div>
+    <div class="header__right">
+      <span class="header__username">Username</span>
+    </div>
+  </header>
+  <main class="main">
+    <div class="main__background">
+      <!-- Add image here -->
+    </div>
+    <div class="main__form__container">
+      <form class="main__form">
+        <select class="main__room__type" id="room-type">
+          <option value="" disable selected>Room Type</option>
+          <option value="single">Single</option>
+          <option value="double">Double</option>
+          <option value="suite">Suite</option>
+        </select>
+        <input class="main__date" type="date" id="date" placeholder="Date">
+        <select class="main__num__people" id="num-people">
+          <option value="" disabled selected>Number of People</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+        <button class="main__submit" type="submit">Search</button>
+      </form>
+    </div>
+    <div class="main__bookings">
+      <!-- Add bookings and total spent here -->
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2023 Overlook. All rights reserved.</p>
+  </footer>
   <script src="bundle.js"></script>
-
 </body>
 </html>
