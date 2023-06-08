@@ -36,5 +36,5 @@ describe('findBookings', () => {
     const foundBookings = findBookings(customer, sampleRooms, sampleBookings);
     expect(foundBookings).to.deep.equal([]);
   })
-})
+});
 
