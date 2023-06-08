@@ -247,7 +247,7 @@ const sampleRooms = [
 const sampleBookings = [
   {
     "id": "5fwrgu4i7k55hl6sz",
-    "userID": 9,
+    "userID": 3,
     "date": "2022/04/22",
     "roomNumber": 15
   },
