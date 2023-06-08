@@ -6,17 +6,19 @@ import findBookings from '../src/functions/find-bookings';
 import { filterRoomsByDate, filterRoomsByType } from '../src/functions/filter-rooms';
 import { sampleCustomers, sampleRooms, sampleBookings } from '../sample-data/sample-data';
 
-// filter rooms by date
-  // takes a date, bookings, and rooms
-  // date format "2022/01/24"
-  // filter bookings.date
-  // return all available rooms
-  // include option to view unavailable rooms
-
 describe('filterRoomsByDate', () => {
   it('should take in a date and return available rooms', () => {
     const date = "2022/01/24";
     const availableRooms = filterRoomsByDate(date, sampleRooms, sampleBookings);
     expect(availableRooms.length).to.equal(19);
+  })
+
+  it('should sort rooms by room number', () => {
+    const date = "1969/08/22";
+    const availableRooms = filterRoomsByDate(date, sampleRooms, sampleBookings);
+    const lowestAvailableRoom = availableRooms[0].roomDetails.number;
+    const highestAvailableRoom = availableRooms[availableRooms.length - 1].roomDetails.number;
+    expect(lowestAvailableRoom).to.deep.equal(2);
+    expect(highestAvailableRoom).to.equal(20);
   })
 })

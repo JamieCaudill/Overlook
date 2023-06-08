@@ -14,7 +14,13 @@ const filterRoomsByDate = (date, roomsData, bookingsData) => {
     })
     return acc;
   }, [])
-  return filteredRooms;
+  const sortedRooms = filteredRooms.sort((a, b) => {
+    return a.roomDetails.number - b.roomDetails.number
+  });
+  return sortedRooms;
 }
+
+// Prevent duplicates
+// I want to add dates available and dates unavailable arrays to roomDetails object
 
 export { filterRoomsByDate, filterRoomsByType }
