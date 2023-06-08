@@ -1,6 +1,8 @@
+// FIND BOOKINGS TEST //
+
 import { expect } from 'chai';
 import findBookings from '../src/functions/find-bookings';
-import { sampleCustomers, sampleRooms, sampleBookings } from '../sample-data/sample-data'
+import { sampleCustomers, sampleRooms, sampleBookings } from '../sample-data/sample-data';
 
 describe('findBookings', () => {
   it('should take in a specific user, rooms data, and bookings data and return an object', () => {
