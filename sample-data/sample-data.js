@@ -364,12 +364,6 @@ const sampleBookings = [
     "userID": 15,
     "date": "2022/01/17",
     "roomNumber": 5
-  },
-  {
-    "id": "5fwrgu4i7k55hl6to",
-    "userID": 46,
-    "date": "2022/02/22",
-    "roomNumber": 13
   }
 ]
 
