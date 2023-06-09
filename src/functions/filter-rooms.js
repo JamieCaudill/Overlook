@@ -1,10 +1,17 @@
 // FILTER ROOMS FUNCTIONS //
 
-const filterRoomsByType = () => {
-
+const filterRoomsByType = (roomFilter, roomsData) => {
+  if (!roomFilter) {
+    return [];
+  }
+  const filteredRooms = roomsData
+    .filter(room => room.roomType === roomFilter)
+    .map(data => data.number)
+    .sort((a, b) => a - b)
+  return [...new Set(filteredRooms)];
 }
 
-const filterRoomsByDate = (date, roomsData, bookingsData) => {
+const filterRoomsByDate = (date, bookingsData) => {
   if (!date) {
     return [];
   }
