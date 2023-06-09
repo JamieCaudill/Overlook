@@ -8,4 +8,11 @@ const userLogin = (username, customersData) => {
   return customersData.find(customer => customer.id === parseInt(customerNumber));
 };
 
-export { userLogin }
+const checkPassword = (password) => {
+  if (password === 'Overlook2021') {
+    return true;
+  } 
+  return false;
+};
+
+export { userLogin, checkPassword };
