@@ -2,7 +2,7 @@
 
 // IMPORTS //
 
-import './css/styles.css';
+import './css/index.css';
 import './images/turing-logo.png'
 
 
