@@ -48,9 +48,19 @@
       </form>
     </div>
     <section class="bookings">
-      <h1 class="bookings__header">Your History</h1>
-      <div class="bookings__history">
+      <div class="bookings__header">
+        <button class="bookings__past__btn">History</button>
+        <button class="bookings__future__btn">Upcoming</button>
+        <button class="bookings__results__btn">Search Results</button>
+      </div>
+      <div class="bookings__past hidden">
         <!-- Add bookings and total spent here -->
+      </div>
+      <div class="bookings__future hidden">
+        <!-- Add future bookings here -->
+      </div>
+      <div class="bookings__results hidden">
+        <!-- Add search results here -->
       </div>
     </section>
   </main>
