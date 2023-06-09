@@ -16,7 +16,7 @@ const loginBtn = document.querySelector('.login__submit');
 const loginForm = document.querySelector('.login__form');
 const loginPage = document.querySelector('.login');
 const mainPage = document.querySelector('.main');
-const mainBookings = document.querySelector('.main__bookings');
+const mainBookings = document.querySelector('.bookings__history');
 const headerUsername = document.querySelector('.header__username')
 
 // DATA MODEL //
@@ -111,10 +111,8 @@ const populateBookings = (bookings) => {
   bookings.forEach(booking => {
     mainBookings.innerHTML += 
       `<div class="booking">
-        <div class="booking__header">
-          <span class="booking__room__type">${booking.roomDetails.roomType}</span>
-        </div>
         <div class="booking__footer">
+          <span class="booking__room__type">${booking.roomDetails.roomType}</span>
           <span class="booking__date">${booking.bookingDetails.date}</span>
         </div>
       </div>`

@@ -62,7 +62,8 @@ header {
 }
 
 .main {
-  padding: 50px;
+  padding: 2em;
+  width: 95vw;
 }
 
 .main__background {
@@ -74,8 +75,37 @@ header {
   margin-bottom: 30px;
 }
 
-.main__bookings {
-  /* Add styles for displaying bookings and total spent here */
+.bookings {
+  height: 100%;
+}
+.bookings .bookings__history {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  height: 80%;
+}
+.bookings .bookings__history .booking {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border: solid black 2px;
+  padding: 0.8em;
+  margin: 0.5em;
+  border-radius: 1em;
+  background-color: #4CAF50;
+  height: 10em;
+  width: 10em;
+}
+.bookings .bookings__history .booking .booking__footer {
+  height: 4em;
+  border: solid black 1px;
+  background-color: white;
+  opacity: 80%;
+  border-radius: 0.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 0.5em;
 }
 
 footer {
