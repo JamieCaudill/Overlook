@@ -3,13 +3,8 @@
 // IMPORTS //
 
 import './css/index.css';
-import './images/turing-logo.png'
-import { userLogin } from './functions/login';
-
-// QUERY SELECTORS //
-const loginUsername = document.querySelector('.login__username');
-const loginPassword = document.querySelector('.login__password');
-const loginBtn = ('.login__submit');
+import './images/turing-logo.png';
+import { getLogin } from './dom-updates';
 
 // DATA MODEL //
 
@@ -48,6 +43,9 @@ window.addEventListener('load', () => {
       });
     });
 });
+
+// EVENT LISTENERS //
+
 
 
 
