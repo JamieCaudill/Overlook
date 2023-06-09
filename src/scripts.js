@@ -5,6 +5,7 @@
 import './css/index.css';
 import './images/turing-logo.png';
 import { userLogin, checkPassword } from './functions/login';
+import findBookings from './functions/find-bookings';
 
 
 // QUERY SELECTORS //
@@ -12,15 +13,19 @@ import { userLogin, checkPassword } from './functions/login';
 const loginUsername = document.querySelector('.login__username');
 const loginPassword = document.querySelector('.login__password');
 const loginBtn = document.querySelector('.login__submit');
-const loginForm = document.querySelector('.login__form')
-const loginPage = document.querySelector('.login__container')
-const mainPage = document.querySelector('.main')
+const loginForm = document.querySelector('.login__form');
+const loginPage = document.querySelector('.login');
+const mainPage = document.querySelector('.main');
+const mainBookings = document.querySelector('.main__bookings');
+const headerUsername = document.querySelector('.header__username')
 
 // DATA MODEL //
 
 let customersData = [];
 let roomsData = [];
 let bookingsData = [];
+let userBookings = [];
+let currentCustomer = {};
 
 // API CALLS //
 
@@ -61,7 +66,7 @@ loginBtn.addEventListener('click', (event) => {
   getLogin(customersData);
 })
 
-// FUNCTIONS //
+// DOM UPDATES //
 
 const getLogin = (data) => {
   let loginResult;
@@ -81,13 +86,16 @@ const getLogin = (data) => {
     alert('Username not recognized') 
     return;
   }
-  console.log(loginResult)
+  userBookings = findBookings(loginResult, roomsData, bookingsData);
+  currentCustomer = loginResult;
+  console.log(currentCustomer)
+  headerUsername.innerText = currentCustomer.name;
   hide([loginPage]);
   show([mainPage]);
   return loginResult;
 }
 
-// function for home page
+// MODIFIERS //
 
 const show = (names) => {
   names.forEach((name) => name.classList.remove('hidden'));
@@ -97,3 +105,10 @@ const hide = (names) => {
   names.forEach((name) => name.classList.add('hidden'));
 };
 
+// const populateBookings = (bookings) => {
+//   bookings.forEach(booking => {
+//     mainBookings.innerHTML += 
+//       `<div class='booking'>
+//         `
+//   })
+// }
