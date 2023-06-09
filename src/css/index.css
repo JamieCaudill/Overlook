@@ -82,4 +82,8 @@ footer {
   background-color: #f2f2f2;
   padding: 10px;
   text-align: center;
+}
+
+.hidden {
+  display: none;
 }/*# sourceMappingURL=index.css.map */

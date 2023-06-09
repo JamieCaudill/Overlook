@@ -13,6 +13,8 @@ const loginUsername = document.querySelector('.login__username');
 const loginPassword = document.querySelector('.login__password');
 const loginBtn = document.querySelector('.login__submit');
 const loginForm = document.querySelector('.login__form')
+const loginPage = document.querySelector('.login__container')
+const mainPage = document.querySelector('.main')
 
 // DATA MODEL //
 
@@ -77,8 +79,21 @@ const getLogin = (data) => {
   if (!loginResult) {
     loginForm.reset();
     alert('Username not recognized') 
+    return;
   }
+  console.log(loginResult)
+  hide([loginPage]);
+  show([mainPage]);
   return loginResult;
 }
 
+// function for home page
+
+const show = (names) => {
+  names.forEach((name) => name.classList.remove('hidden'));
+};
+
+const hide = (names) => {
+  names.forEach((name) => name.classList.add('hidden'));
+};
 
