@@ -22,4 +22,4 @@ const filterRoomsByDate = (date, bookingsData) => {
   return [...new Set(filteredBookings)];
 }
 
-export { filterRoomsByDate, filterRoomsByType }
+export { filterRoomsByDate, filterRoomsByType };
