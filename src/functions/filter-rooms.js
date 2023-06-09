@@ -9,7 +9,7 @@ const filterRoomsByType = (roomFilter, roomsData) => {
     .map(data => data.number)
     .sort((a, b) => a - b)
   return [...new Set(filteredRooms)];
-}
+};
 
 const filterRoomsByDate = (date, bookingsData) => {
   if (!date) {
@@ -20,6 +20,6 @@ const filterRoomsByDate = (date, bookingsData) => {
     .map(room => room.roomNumber)
     .sort((a, b) => a - b)
   return [...new Set(filteredBookings)];
-}
+};
 
 export { filterRoomsByDate, filterRoomsByType };
