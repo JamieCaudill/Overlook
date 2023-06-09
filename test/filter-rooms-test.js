@@ -7,18 +7,18 @@ import { filterRoomsByDate, filterRoomsByType } from '../src/functions/filter-ro
 import { sampleCustomers, sampleRooms, sampleBookings } from '../sample-data/sample-data';
 
 describe('filterRoomsByDate', () => {
-  it('should take in a date and return available rooms', () => {
+  it('should take in a date and return available rooms with no duplicates', () => {
     const date = "2022/01/24";
     const availableRooms = filterRoomsByDate(date, sampleRooms, sampleBookings);
-    expect(availableRooms.length).to.equal(19);
+    expect(availableRooms.length).to.equal(13);
   })
 
   it('should sort rooms by room number', () => {
     const date = "1969/08/22";
     const availableRooms = filterRoomsByDate(date, sampleRooms, sampleBookings);
-    const lowestAvailableRoom = availableRooms[0].roomDetails.number;
-    const highestAvailableRoom = availableRooms[availableRooms.length - 1].roomDetails.number;
+    const lowestAvailableRoom = availableRooms[0]
+    const highestAvailableRoom = availableRooms[availableRooms.length - 1]
     expect(lowestAvailableRoom).to.deep.equal(2);
-    expect(highestAvailableRoom).to.equal(20);
+    expect(highestAvailableRoom).to.equal(24);
   })
 })

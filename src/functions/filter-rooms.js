@@ -4,7 +4,7 @@ const filterRoomsByType = () => {
 
 }
 
-const filterRoomsByDate = (date, roomsData, bookingsData) => {
+const filterRoomsByNumber = (date, roomsData, bookingsData) => {
   const filteredBookings = bookingsData.filter(booking => booking.date !== date);
   const filteredRooms = roomsData.reduce((acc, room) => {
     filteredBookings.forEach(booking => {
@@ -20,7 +20,16 @@ const filterRoomsByDate = (date, roomsData, bookingsData) => {
   return sortedRooms;
 }
 
+
+const filterRoomsByDate = (date, roomsData, bookingsData) => {
+  const filteredBookings = bookingsData
+    .filter(booking => booking.date !== date)
+    .map(room => room.roomNumber)
+    .sort((a, b) => a - b)
+  return [...new Set(filteredBookings)];
+}
+
 // Prevent duplicates
 // I want to add dates available and dates unavailable arrays to roomDetails object
 
-export { filterRoomsByDate, filterRoomsByType }
+export { filterRoomsByDate, filterRoomsByNumber, filterRoomsByType }
