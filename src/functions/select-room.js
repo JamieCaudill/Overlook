@@ -7,12 +7,11 @@ const selectRoom = (roomNumberInput, roomsData, bookingsData) => {
   const roomInfo = roomsData.reduce((acc, room) => {
     if (room.number === roomNumberInput) {
       acc.bookedDates = booked;
-      acc.roomDetails = room
+      acc.roomDetails = room;
     }
     return acc;
-  }, {})
+  }, {});
   return roomInfo;
-}
-
+};
 
 export default selectRoom;
