@@ -1,10 +1,8 @@
 // FILTER ROOMS TEST //
 
 import { expect } from 'chai';
-import findTotalCost from "../src/functions/find-total-cost";
-import findBookings from '../src/functions/find-bookings';
 import { filterRoomsByDate, filterRoomsByType } from '../src/functions/filter-rooms';
-import { sampleCustomers, sampleRooms, sampleBookings } from '../sample-data/sample-data';
+import { sampleRooms, sampleBookings } from '../sample-data/sample-data';
 
 describe('filterRoomsByDate', () => {
   it('should take in a date and return available rooms with no duplicates', () => {
@@ -20,5 +18,11 @@ describe('filterRoomsByDate', () => {
     const highestAvailableRoom = availableRooms[availableRooms.length - 1]
     expect(lowestAvailableRoom).to.deep.equal(2);
     expect(highestAvailableRoom).to.equal(24);
+  })
+
+  it('should return an empty array if no date argument is passed', () => {
+    const date = '';
+    const availableRooms = filterRoomsByDate(date, sampleRooms, sampleBookings);
+    expect(availableRooms).to.deep.equal([]);
   })
 })
