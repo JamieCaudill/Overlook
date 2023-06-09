@@ -4,7 +4,15 @@
 
 import './css/index.css';
 import './images/turing-logo.png';
-import { getLogin } from './dom-updates';
+import { userLogin, checkPassword } from './functions/login';
+
+
+// QUERY SELECTORS //
+
+const loginUsername = document.querySelector('.login__username');
+const loginPassword = document.querySelector('.login__password');
+const loginBtn = document.querySelector('.login__submit');
+const loginForm = document.querySelector('.login__form')
 
 // DATA MODEL //
 
@@ -26,11 +34,11 @@ window.addEventListener('load', () => {
           response.json()
             .then(data => {
               if (response.url.includes('/customers')) {
-                customersData.push(data.customers)
+                customersData = data.customers;
               } else if (response.url.includes('/rooms')) {
-                roomsData.push(data.rooms)
+                roomsData = data.rooms;
               } else if (response.url.includes('/bookings')) {
-                bookingsData.push(data.bookings)
+                bookingsData = data.bookings;
               }
             })
             .catch(error => {
@@ -46,6 +54,31 @@ window.addEventListener('load', () => {
 
 // EVENT LISTENERS //
 
+loginBtn.addEventListener('click', (event) => {
+  event.preventDefault()
+  getLogin(customersData);
+})
 
+// FUNCTIONS //
+
+const getLogin = (data) => {
+  let loginResult;
+  const username = loginUsername.value;
+  const password = loginPassword.value;
+  
+  if (checkPassword(password)) {
+    loginResult = userLogin(username, data);
+  } else {
+    loginForm.reset();
+    alert('Incorrect password');
+    return;
+  }
+
+  if (!loginResult) {
+    loginForm.reset();
+    alert('Username not recognized') 
+  }
+  return loginResult;
+}
 
 
