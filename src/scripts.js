@@ -63,7 +63,8 @@ window.addEventListener('load', () => {
 
 loginBtn.addEventListener('click', (event) => {
   event.preventDefault()
-  getLogin(customersData);
+  getLogin(customersData)
+  populateBookings(userBookings);
 })
 
 // DOM UPDATES //
@@ -87,6 +88,7 @@ const getLogin = (data) => {
     return;
   }
   userBookings = findBookings(loginResult, roomsData, bookingsData);
+  console.log(userBookings)
   currentCustomer = loginResult;
   console.log(currentCustomer)
   headerUsername.innerText = currentCustomer.name;
@@ -105,10 +107,16 @@ const hide = (names) => {
   names.forEach((name) => name.classList.add('hidden'));
 };
 
-// const populateBookings = (bookings) => {
-//   bookings.forEach(booking => {
-//     mainBookings.innerHTML += 
-//       `<div class='booking'>
-//         `
-//   })
-// }
+const populateBookings = (bookings) => {
+  bookings.forEach(booking => {
+    mainBookings.innerHTML += 
+      `<div class="booking">
+        <div class="booking__header">
+          <span class="booking__room__type">${booking.roomDetails.roomType}</span>
+        </div>
+        <div class="booking__footer">
+          <span class="booking__date">${booking.bookingDetails.date}</span>
+        </div>
+      </div>`
+  });
+};
