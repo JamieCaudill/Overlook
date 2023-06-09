@@ -16,8 +16,16 @@ const loginBtn = document.querySelector('.login__submit');
 const loginForm = document.querySelector('.login__form');
 const loginPage = document.querySelector('.login');
 const mainPage = document.querySelector('.main');
-const mainBookings = document.querySelector('.bookings__history');
+const pastBookings = document.querySelector('.bookings__past');
+const futureBookings = document.querySelector('.bookings__future')
+const searchResults = document.querySelector('.bookings__results')
 const headerUsername = document.querySelector('.header__username')
+
+// buttons //
+
+const btnHistory = document.querySelector('.bookings__past__btn');
+const btnUpcoming = document.querySelector('.bookings__future__btn');
+const btnResults = document.querySelector('.bookings__results__btn');
 
 // DATA MODEL //
 
@@ -64,8 +72,10 @@ window.addEventListener('load', () => {
 loginBtn.addEventListener('click', (event) => {
   event.preventDefault()
   getLogin(customersData)
-  populateBookings(userBookings);
+  populateBookings(userBookings, pastBookings);
 })
+
+
 
 // DOM UPDATES //
 
@@ -107,9 +117,9 @@ const hide = (names) => {
   names.forEach((name) => name.classList.add('hidden'));
 };
 
-const populateBookings = (bookings) => {
+const populateBookings = (bookings, section) => {
   bookings.forEach(booking => {
-    mainBookings.innerHTML += 
+    section.innerHTML += 
       `<div class="booking">
         <div class="booking__footer">
           <span class="booking__room__type">${booking.roomDetails.roomType}</span>
