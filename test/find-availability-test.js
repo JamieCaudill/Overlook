@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import findAvailability from '../src/functions/find-availability';
-import { sampleRooms, sampleBookings } from '../sample-data/sample-data';
+import { sampleBookings } from '../sample-data/sample-data';
 
 describe('findAvailability', () => {
   it('should take in a room number and return an array of booked dates', () => {
