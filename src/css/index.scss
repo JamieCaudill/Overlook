@@ -92,14 +92,13 @@ header {
 .bookings {
   height: 100%;
   .bookings__header {
-    border: solid black 1px;
     height: 3em;
     padding: 0;
     display: flex;
     align-items: end;
     button {
-      margin: 1em 3em 0 0;
-      background-color: #4CAF50;
+      margin: 1em 2em 1em 1em;
+      background-color: $primary-color;
       border: 0;
       border-radius: 0.3em;
       font-size: medium;
@@ -122,8 +121,8 @@ header {
       margin: .5em;
       border-radius: 1em;
       background-color: $primary-color;
-      height: 10em;
-      width: 10em;
+      height: 7em;
+      width: 9em;
       .booking__footer {
         height: 4em;
         border: solid black 1px;
