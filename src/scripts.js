@@ -6,7 +6,7 @@ import './css/index.css';
 import './images/turing-logo.png';
 import { userLogin, checkPassword } from './functions/login';
 import findBookings from './functions/find-bookings';
-import { filterRoomsByDate, getRoomsDetails } from './functions/filter-rooms';
+import { filterRoomsByDate, filterRoomsByType, getRoomsDetails } from './functions/filter-rooms';
 
 
 // QUERY SELECTORS //
@@ -14,7 +14,6 @@ import { filterRoomsByDate, getRoomsDetails } from './functions/filter-rooms';
 const loginUsername = document.querySelector('.login__username');
 const loginPassword = document.querySelector('.login__password');
 const loginBtn = document.querySelector('.login__submit');
-const loginForm = document.querySelector('.login__form');
 const loginPage = document.querySelector('.login');
 const mainPage = document.querySelector('.main');
 const pastBookings = document.querySelector('.bookings__past');
@@ -23,6 +22,7 @@ const searchResults = document.querySelector('.bookings__results')
 const headerUsername = document.querySelector('.header__username')
 const searchForm = document.querySelector('.main__form')
 const dateInput = document.querySelector('.main__date')
+const typeInput = document.querySelector('.main__room__type')
 
 
 // buttons //
@@ -250,7 +250,6 @@ const showHistory = () => {
   sortByDate(userBookings)
 };
 
-
 const searchByDate = (event) => {
   event.preventDefault();
   hide([pastBookings, futureBookings])
@@ -259,7 +258,15 @@ const searchByDate = (event) => {
   const formattedDate = `${dateSplit[0]}/${dateSplit[1]}/${dateSplit[2]}`
   const filteredRooms = filterRoomsByDate(formattedDate, bookingsData);
   availableRooms = getRoomsDetails(filteredRooms, roomsData)
-  console.log(availableRooms)
+  if (typeInput) {
+    const filteredByType = searchByType(typeInput, availableRooms)
+    availableRooms = getRoomsDetails(filteredByType, roomsData)
+  }
   populateRooms(availableRooms, searchResults)
 };
  
+const searchByType = (input, data) => {
+  const typeFilter = input.value;
+  const filteredRooms = filterRoomsByType(typeFilter, data);
+  return filteredRooms;
+}

@@ -4,10 +4,16 @@ const filterRoomsByType = (roomFilter, roomsData) => {
   if (!roomFilter) {
     return [];
   }
+
   const filteredRooms = roomsData
-    .filter(room => room.roomType === roomFilter)
+    .filter(room => {
+      console.log(room.roomType);
+      return room.roomType === roomFilter
+    })
     .map(data => data.number)
     .sort((a, b) => a - b)
+
+  console.log(filteredRooms)
   return [...new Set(filteredRooms)];
 };
 
