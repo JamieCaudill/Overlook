@@ -92,7 +92,7 @@ pastBookings.addEventListener('click', (event) => {
 })
 
 btnSearchSubmit.addEventListener('click', (event) => {
-  searchByDate(event);
+  searchRooms(event);
 })
 
 searchResults.addEventListener('click', (event) => {
@@ -250,23 +250,27 @@ const showHistory = () => {
   sortByDate(userBookings)
 };
 
-const searchByDate = (event) => {
+const searchRooms = (event) => {
   event.preventDefault();
   hide([pastBookings, futureBookings])
   show([searchResults])
-  const dateSplit = dateInput.value.split('-')
-  const formattedDate = `${dateSplit[0]}/${dateSplit[1]}/${dateSplit[2]}`
-  const filteredRooms = filterRoomsByDate(formattedDate, bookingsData);
-  availableRooms = getRoomsDetails(filteredRooms, roomsData)
-  if (typeInput) {
+  const filteredByDate = searchByDate(dateInput, bookingsData);
+  availableRooms = getRoomsDetails(filteredByDate, roomsData);
+  if (typeInput.value) {
     const filteredByType = searchByType(typeInput, availableRooms)
     availableRooms = getRoomsDetails(filteredByType, roomsData)
   }
   populateRooms(availableRooms, searchResults)
 };
- 
+
+const searchByDate = (input, bookingsData) => {
+  const dateSplit = input.value.split('-');
+  const formattedDate = `${dateSplit[0]}/${dateSplit[1]}/${dateSplit[2]}`;
+  return filterRoomsByDate(formattedDate, bookingsData);
+}
+
 const searchByType = (input, data) => {
   const typeFilter = input.value;
   const filteredRooms = filterRoomsByType(typeFilter, data);
   return filteredRooms;
-}
+};
