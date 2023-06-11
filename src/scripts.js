@@ -6,6 +6,7 @@ import './css/index.css';
 import './images/turing-logo.png';
 import { userLogin, checkPassword } from './functions/login';
 import findBookings from './functions/find-bookings';
+import { filterRoomsByDate, getRoomsDetails } from './functions/filter-rooms';
 
 
 // QUERY SELECTORS //
@@ -20,15 +21,17 @@ const pastBookings = document.querySelector('.bookings__past');
 const futureBookings = document.querySelector('.bookings__future')
 const searchResults = document.querySelector('.bookings__results')
 const headerUsername = document.querySelector('.header__username')
-const roomDetails = document.querySelector('.room__details')
-const currentRoomSection = document.querySelector('.bookings__room')
+const searchForm = document.querySelector('.main__form')
+const dateInput = document.querySelector('.main__date')
+
 
 // buttons //
 
 const btnHistory = document.querySelector('.bookings__past__btn');
 const btnUpcoming = document.querySelector('.bookings__future__btn');
 const btnResults = document.querySelector('.bookings__results__btn');
-const btnBackRoom = document.querySelector('.room__back');
+const btnSearchSubmit = document.querySelector('.main__submit')
+
 
 // DATA MODEL //
 
@@ -91,6 +94,17 @@ pastBookings.addEventListener('click', (event) => {
   showRoomDetails(event, userBookings)
 })
 
+btnSearchSubmit.addEventListener('click', (event) => {
+  event.preventDefault();
+  const dateSplit = dateInput.value.split('-')
+  const formattedDate = `${dateSplit[0]}/${dateSplit[1]}/${dateSplit[2]}`
+  const filteredRooms = filterRoomsByDate(formattedDate, bookingsData);
+  const roomDetails = getRoomsDetails(filteredRooms, roomsData)
+  console.log(roomDetails)
+  populateRooms(roomDetails, searchResults)
+  hide([pastBookings, futureBookings])
+  show([searchResults])
+})
 
 
 // DOM UPDATES //
@@ -100,19 +114,24 @@ const getLogin = (data) => {
   const username = loginUsername.value;
   const password = loginPassword.value;
   
-  if (checkPassword(password)) {
-    loginResult = userLogin(username, data);
-  } else {
-    loginForm.reset();
-    alert('Incorrect password');
-    return;
-  }
+  // if (checkPassword(password)) {
+  //   loginResult = userLogin(username, data);
+  // } else {
+  //   loginForm.reset();
+  //   alert('Incorrect password');
+  //   return;
+  // }
 
-  if (!loginResult) {
-    loginForm.reset();
-    alert('Username not recognized') 
-    return;
-  }
+  // if (!loginResult) {
+  //   loginForm.reset();
+  //   alert('Username not recognized') 
+  //   return;
+  // }
+  
+  // TEMPORARY //
+  loginResult = userLogin('customer1', data)
+
+
   userBookings = findBookings(loginResult, roomsData, bookingsData);
   userBookings = sortByDate(userBookings);
   currentCustomer = loginResult;
@@ -160,6 +179,19 @@ const populateBooking = (booking, section) => {
     </div>`
 };
 
+const populateRooms = (rooms, section) => {
+  section.innerHTML = '';
+  rooms.forEach(room => {
+    section.innerHTML += 
+      `<div class="booking">
+        <div class="booking__footer">
+          <span class="room__type">${room.roomType}</span>
+          <span class="room__cost">${room.costPerNight}</span>
+        </div>
+      </div>`
+  });
+}
+
 // const getTodaysDate = () => {
 //   const currentDate = new Date();
 //   // eslint-disable-next-line max-len
@@ -192,3 +224,4 @@ const showRoomDetails = (event, bookings) => {
   currentRoom = targetedRoom;
   populateBooking(currentRoom, pastBookings)
 };
+

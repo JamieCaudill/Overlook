@@ -27,12 +27,14 @@ describe('findBookings', () => {
     const foundBookings = findBookings(customer, sampleRooms, sampleBookings)
     expect(foundBookings.length).to.equal(1);
     expect(foundBookings[0]).to.deep.equal(booking);
-  })
+  });
+  
   it('should work with multiple bookings', () => {
     const customer = sampleCustomers[2];
     const foundBookings = findBookings(customer, sampleRooms, sampleBookings);
     expect(foundBookings.length).to.equal(2);
-  })
+  });
+
   it('should return an empty array if no bookings are found', () => {
     const customer = sampleCustomers[3];
     const foundBookings = findBookings(customer, sampleRooms, sampleBookings);
