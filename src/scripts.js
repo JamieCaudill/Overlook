@@ -92,7 +92,11 @@ btnUpcoming.addEventListener('click', () => {
 })
 
 pastBookings.addEventListener('click', (event) => {
-  showBookingDetails(event, userBookings)
+  showBookingDetails(event, bookingsHistory, pastBookings)
+})
+
+futureBookings.addEventListener('click', (event) => {
+  showBookingDetails(event, bookingsUpcoming, futureBookings)
 })
 
 btnSearchSubmit.addEventListener('click', (event) => {
@@ -221,18 +225,22 @@ const sortByToday = (bookings) => {
   bookings.forEach(booking => {
     const bookingDate = new Date(booking.bookingDetails.date);
     if (bookingDate < currentDate) {
-      bookingsHistory.push(booking);
+      if (!bookingsHistory.includes(booking)) {
+        bookingsHistory.push(booking);
+      }
     } else {
-      bookingsUpcoming.push(booking);
+      if (!bookingsUpcoming.includes(booking)) {
+        bookingsUpcoming.push(booking);
+      }
     }
   });
-};
+}
 
-const showBookingDetails = (event, bookings) => {
+const showBookingDetails = (event, bookings, section) => {
   const target = event.target.id;
   const targetedRoom = bookings.find(booking => booking.bookingDetails.id === target)
   currentRoom = targetedRoom;
-  populateBooking(currentRoom, pastBookings)
+  populateBooking(currentRoom, section)
 };
 
 const showRoomDetails = (event, rooms) => {
