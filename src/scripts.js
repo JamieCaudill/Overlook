@@ -29,7 +29,6 @@ const dateInput = document.querySelector('.main__date')
 
 const btnHistory = document.querySelector('.bookings__past__btn');
 const btnUpcoming = document.querySelector('.bookings__future__btn');
-const btnResults = document.querySelector('.bookings__results__btn');
 const btnSearchSubmit = document.querySelector('.main__submit')
 
 
@@ -38,6 +37,7 @@ const btnSearchSubmit = document.querySelector('.main__submit')
 let customersData = [];
 let roomsData = [];
 let bookingsData = [];
+
 let userBookings = [];
 let bookingsHistory = [];
 let bookingsUpcoming = [];
@@ -80,15 +80,11 @@ window.addEventListener('load', () => {
 // EVENT LISTENERS //
 
 loginBtn.addEventListener('click', (event) => {
-  event.preventDefault()
-  getLogin(customersData)
+  getLogin(event, customersData)
 })
 
 btnHistory.addEventListener('click', () => {
-  populateBookings(userBookings, pastBookings);
-  show([pastBookings]);
-  hide([futureBookings, searchResults]);
-  sortByDate(userBookings)
+  showHistory();
 })
 
 pastBookings.addEventListener('click', (event) => {
@@ -96,15 +92,7 @@ pastBookings.addEventListener('click', (event) => {
 })
 
 btnSearchSubmit.addEventListener('click', (event) => {
-  event.preventDefault();
-  const dateSplit = dateInput.value.split('-')
-  const formattedDate = `${dateSplit[0]}/${dateSplit[1]}/${dateSplit[2]}`
-  const filteredRooms = filterRoomsByDate(formattedDate, bookingsData);
-  availableRooms = getRoomsDetails(filteredRooms, roomsData)
-  console.log(availableRooms)
-  populateRooms(availableRooms, searchResults)
-  hide([pastBookings, futureBookings])
-  show([searchResults])
+  searchByDate(event);
 })
 
 searchResults.addEventListener('click', (event) => {
@@ -114,7 +102,8 @@ searchResults.addEventListener('click', (event) => {
 
 // DOM UPDATES //
 
-const getLogin = (data) => {
+const getLogin = (event, data) => {
+  event.preventDefault();
   let loginResult;
   const username = loginUsername.value;
   const password = loginPassword.value;
@@ -253,3 +242,24 @@ const showRoomDetails = (event, rooms) => {
   currentRoom = targetedRoom;
   populateRoom(currentRoom, searchResults)
 };
+
+const showHistory = () => {
+  show([pastBookings]);
+  hide([futureBookings, searchResults]);
+  populateBookings(userBookings, pastBookings);
+  sortByDate(userBookings)
+};
+
+
+const searchByDate = (event) => {
+  event.preventDefault();
+  hide([pastBookings, futureBookings])
+  show([searchResults])
+  const dateSplit = dateInput.value.split('-')
+  const formattedDate = `${dateSplit[0]}/${dateSplit[1]}/${dateSplit[2]}`
+  const filteredRooms = filterRoomsByDate(formattedDate, bookingsData);
+  availableRooms = getRoomsDetails(filteredRooms, roomsData)
+  console.log(availableRooms)
+  populateRooms(availableRooms, searchResults)
+};
+ 

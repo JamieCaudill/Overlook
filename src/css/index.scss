@@ -109,31 +109,18 @@ header {
   }
   .bookings__past, .bookings__future, .bookings__results {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-direction: column;
     height: 80%;
     .booking {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      border: solid black 2px;
-      padding: .8em;
-      margin: .5em;
-      border-radius: 1em;
-      background-color: $primary-color;
-      height: 7em;
-      width: 9em;
-      .booking__footer {
-        height: 4em;
-        border: solid black 1px;
-        background-color: white;
-        opacity: 80%;
-        border-radius: .5em;
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
-        padding: .5em;
-      }
+        justify-content: flex-end;
+        border: solid black 2px;
+        padding: 0.8em;
+        margin: 0.5em;
+        border-radius: 1em;
+        height: 3em;
+        width: 50em;
     }
   }
 }
@@ -147,5 +134,5 @@ footer {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
