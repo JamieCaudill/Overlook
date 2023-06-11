@@ -87,6 +87,10 @@ btnHistory.addEventListener('click', () => {
   showHistory();
 })
 
+btnUpcoming.addEventListener('click', () => {
+  showUpcoming();
+})
+
 pastBookings.addEventListener('click', (event) => {
   showBookingDetails(event, userBookings)
 })
@@ -188,7 +192,6 @@ const populateRooms = (rooms, section) => {
 
 const populateRoom = (room, section) => {
   section.innerHTML = '';
-  console.log(room)
   section.innerHTML = 
     `<div class="current__booking">
       <p>Room Number: ${room.number}</p>
@@ -210,22 +213,20 @@ const populateRoom = (room, section) => {
 
 
 const sortByDate = (bookings) => {
-  // Make test suite
   return bookings.sort((a, b) => new Date(a.bookingDetails.date) - new Date(b.bookingDetails.date))
 };
 
-// const sortByToday = (bookings) => {
-//   const currentDate = getTodaysDate();
-//   bookings.forEach(booking => {
-//     if (new Date(booking.bookingDetails.date) < currentDate) {
-//       bookingsHistory.push(booking);
-//     } else {
-//       bookingsUpcoming.push(booking);
-//     }
-//   })
-//   console.log('upcoming')
-//   console.log(bookingsUpcoming)
-// }
+const sortByToday = (bookings) => {
+  const currentDate = new Date();
+  bookings.forEach(booking => {
+    const bookingDate = new Date(booking.bookingDetails.date);
+    if (bookingDate < currentDate) {
+      bookingsHistory.push(booking);
+    } else {
+      bookingsUpcoming.push(booking);
+    }
+  });
+};
 
 const showBookingDetails = (event, bookings) => {
   const target = event.target.id;
@@ -236,9 +237,7 @@ const showBookingDetails = (event, bookings) => {
 
 const showRoomDetails = (event, rooms) => {
   const target = parseInt(event.target.id);
-  console.log('id ' + target)
   const targetedRoom = rooms.find(room => room.number === target)
-  console.log('targeted ' + targetedRoom)
   currentRoom = targetedRoom;
   populateRoom(currentRoom, searchResults)
 };
@@ -246,8 +245,17 @@ const showRoomDetails = (event, rooms) => {
 const showHistory = () => {
   show([pastBookings]);
   hide([futureBookings, searchResults]);
-  populateBookings(userBookings, pastBookings);
-  sortByDate(userBookings)
+  sortByToday(userBookings)
+  sortByDate(bookingsHistory)
+  populateBookings(bookingsHistory, pastBookings);
+};
+
+const showUpcoming = () => {
+  show([futureBookings]);
+  hide([pastBookings, searchResults]);
+  sortByToday(userBookings)
+  sortByDate(bookingsUpcoming)
+  populateBookings(bookingsUpcoming, futureBookings);
 };
 
 const searchRooms = (event) => {
