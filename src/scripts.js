@@ -43,6 +43,7 @@ let bookingsHistory = [];
 let bookingsUpcoming = [];
 let currentCustomer = {};
 let currentRoom = {};
+let availableRooms = [];
 
 // API CALLS //
 
@@ -91,7 +92,7 @@ btnHistory.addEventListener('click', () => {
 })
 
 pastBookings.addEventListener('click', (event) => {
-  showRoomDetails(event, userBookings)
+  showBookingDetails(event, userBookings)
 })
 
 btnSearchSubmit.addEventListener('click', (event) => {
@@ -99,11 +100,15 @@ btnSearchSubmit.addEventListener('click', (event) => {
   const dateSplit = dateInput.value.split('-')
   const formattedDate = `${dateSplit[0]}/${dateSplit[1]}/${dateSplit[2]}`
   const filteredRooms = filterRoomsByDate(formattedDate, bookingsData);
-  const roomDetails = getRoomsDetails(filteredRooms, roomsData)
-  console.log(roomDetails)
-  populateRooms(roomDetails, searchResults)
+  availableRooms = getRoomsDetails(filteredRooms, roomsData)
+  console.log(availableRooms)
+  populateRooms(availableRooms, searchResults)
   hide([pastBookings, futureBookings])
   show([searchResults])
+})
+
+searchResults.addEventListener('click', (event) => {
+  showRoomDetails(event, availableRooms)
 })
 
 
@@ -157,7 +162,7 @@ const populateBookings = (bookings, section) => {
   bookings.forEach(booking => {
     section.innerHTML += 
       `<div class="booking" id=${booking.bookingDetails.id}>
-        <div class="booking__footer">
+        <div class="booking__footer" id=${booking.bookingDetails.id}>
           <span class="booking__room__type">${booking.roomDetails.roomType}</span>
           <span class="booking__date">${booking.bookingDetails.date}</span>
         </div>
@@ -168,7 +173,7 @@ const populateBookings = (bookings, section) => {
 const populateBooking = (booking, section) => {
   section.innerHTML = '';
   section.innerHTML = 
-    `<div class=current__booking id=${booking.bookingDetails.id}>
+    `<div class="current__booking" id=${booking.bookingDetails.id}>
       <p>Date: ${booking.bookingDetails.date}</p>
       <p>Room Number: ${booking.bookingDetails.roomNumber}</p>
       <p>Room Type: ${booking.roomDetails.roomType}</p>
@@ -183,14 +188,29 @@ const populateRooms = (rooms, section) => {
   section.innerHTML = '';
   rooms.forEach(room => {
     section.innerHTML += 
-      `<div class="booking">
-        <div class="booking__footer">
+      `<div class="booking" id=${room.number}>
+        <div class="booking__footer id=${room.number}>
           <span class="room__type">${room.roomType}</span>
           <span class="room__cost">${room.costPerNight}</span>
         </div>
       </div>`
   });
 }
+
+const populateRoom = (room, section) => {
+  section.innerHTML = '';
+  console.log(room)
+  section.innerHTML = 
+    `<div class="current__booking">
+      <p>Room Number: ${room.number}</p>
+      <p>Room Type: ${room.roomType}</p>
+      <p>Bidet: ${room.bidet}</p>
+      <p>Bed Size: ${room.bedSize}</p>
+      <p>Number of Beds: ${room.numBeds}</p>
+      <p>Cost Per Night: ${room.costPerNight}</p>
+    </div>`
+};
+
 
 // const getTodaysDate = () => {
 //   const currentDate = new Date();
@@ -218,10 +238,18 @@ const sortByDate = (bookings) => {
 //   console.log(bookingsUpcoming)
 // }
 
-const showRoomDetails = (event, bookings) => {
+const showBookingDetails = (event, bookings) => {
   const target = event.target.id;
   const targetedRoom = bookings.find(booking => booking.bookingDetails.id === target)
   currentRoom = targetedRoom;
   populateBooking(currentRoom, pastBookings)
 };
 
+const showRoomDetails = (event, rooms) => {
+  const target = parseInt(event.target.id);
+  console.log('id ' + target)
+  const targetedRoom = rooms.find(room => room.number === target)
+  console.log('targeted ' + targetedRoom)
+  currentRoom = targetedRoom;
+  populateRoom(currentRoom, searchResults)
+};
