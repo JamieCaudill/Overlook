@@ -98,18 +98,18 @@ header {
 .bookings .bookings__past, .bookings .bookings__future, .bookings .bookings__results, .bookings .bookings__cost {
   display: flex;
   flex-direction: column;
-  height: 80%;
 }
 .bookings .bookings__past .booking, .bookings .bookings__future .booking, .bookings .bookings__results .booking, .bookings .bookings__cost .booking {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   border: solid black 2px;
-  padding: 0.8em;
   margin: 0.5em;
   border-radius: 1em;
-  height: 3em;
-  width: 50em;
+  padding: 1em;
+}
+.bookings .bookings__past .booking p, .bookings .bookings__future .booking p, .bookings .bookings__results .booking p, .bookings .bookings__cost .booking p {
+  margin: 0;
+  padding: 0.3em;
 }
 
 footer {

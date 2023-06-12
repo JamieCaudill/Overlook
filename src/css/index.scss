@@ -117,17 +117,17 @@ header {
   .bookings__past, .bookings__future, .bookings__results, .bookings__cost {
     display: flex;
     flex-direction: column;
-    height: 80%;
     .booking {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        border: solid black 2px;
-        padding: 0.8em;
-        margin: 0.5em;
-        border-radius: 1em;
-        height: 3em;
-        width: 50em;
+      display: flex;
+      flex-direction: column;
+      border: solid black 2px;
+      margin: 0.5em;
+      border-radius: 1em;
+      padding: 1em;
+      p {
+        margin: 0;
+        padding: .3em;
+      }
     }
   }
 }
