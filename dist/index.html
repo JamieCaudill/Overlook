@@ -16,7 +16,15 @@
       <span class="header__username">Username</span>
     </div>
   </header>
-  <main class="main">
+  <section class="login">
+    <form class="login__form">
+      <h1 class="login__header">Login</h1>
+      <input class="login__username" type="text" placeholder="Username" required>
+      <input class="login__password" type="password" placeholder="Password" required>
+      <button class="login__submit" type="submit">Login</button>
+    </form>
+  </section>
+  <main class="main hidden">
     <div class="main__background">
       <!-- Add image here -->
     </div>
@@ -24,24 +32,44 @@
       <form class="main__form">
         <select class="main__room__type" id="room-type">
           <option value="" disable selected>Room Type</option>
-          <option value="single">Single</option>
-          <option value="double">Double</option>
+          <option value="single room">Single</option>
           <option value="suite">Suite</option>
+          <option value="residential suite">Residential Suite</option>
+          <option value="junior suite">Junior Suite</option>
         </select>
         <input class="main__date" type="date" id="date" placeholder="Date">
-        <select class="main__num__people" id="num-people">
-          <option value="" disabled selected>Number of People</option>
+        <!-- <select class="main__num__people" id="num-people">
+          <option value="" disabled selected>Number of Beds</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
-        </select>
+        </select> -->
         <button class="main__submit" type="submit">Search</button>
       </form>
     </div>
-    <div class="main__bookings">
-      <!-- Add bookings and total spent here -->
-    </div>
+    <section class="bookings">
+      <div class="bookings__header">
+        <button class="bookings__past__btn">History</button>
+        <button class="bookings__future__btn">Upcoming</button>
+        <button class="bookings__cost__btn">Total Cost</button>
+      </div>
+      <div class="bookings__past hidden">
+        <!-- Add bookings and total spent here -->
+      </div>
+      <div class="bookings__future hidden">
+        <!-- Add future bookings here -->
+      </div>
+      <div class="bookings__results hidden">
+        <!-- Add search results here -->
+      </div>
+      <div class="bookings__total__cost hidden">
+        <div class="bookings__cost">
+          <!-- Cost here  -->
+        </div>
+        <p class="total__cost"></p>
+      </div>
+    </section>
   </main>
   <footer>
     <p>&copy; 2023 Overlook. All rights reserved.</p>
