@@ -20,7 +20,6 @@ const pastBookings = document.querySelector('.bookings__past');
 const futureBookings = document.querySelector('.bookings__future')
 const searchResults = document.querySelector('.bookings__results')
 const headerUsername = document.querySelector('.header__username')
-const searchForm = document.querySelector('.main__form')
 const dateInput = document.querySelector('.main__date')
 const typeInput = document.querySelector('.main__room__type')
 
@@ -29,7 +28,8 @@ const typeInput = document.querySelector('.main__room__type')
 
 const btnHistory = document.querySelector('.bookings__past__btn');
 const btnUpcoming = document.querySelector('.bookings__future__btn');
-const btnSearchSubmit = document.querySelector('.main__submit')
+const btnSearchSubmit = document.querySelector('.main__submit');
+
 
 
 // DATA MODEL //
@@ -43,6 +43,7 @@ let bookingsHistory = [];
 let bookingsUpcoming = [];
 let currentCustomer = {};
 let currentRoom = {};
+let currentDateValue = '';
 let availableRooms = [];
 
 // API CALLS //
@@ -50,8 +51,7 @@ let availableRooms = [];
 const fetchCustomers = fetch('http://localhost:3001/api/v1/customers');
 const fetchRooms = fetch('http://localhost:3001/api/v1/rooms');
 const fetchBookings = fetch('http://localhost:3001/api/v1/bookings');
-
-window.addEventListener('load', () => {
+const fetchAllData = () => {
   Promise.all([fetchCustomers, fetchRooms, fetchBookings])
     .then(responses => {
       responses.forEach(response => {
@@ -75,7 +75,9 @@ window.addEventListener('load', () => {
         }
       });
     });
-});
+}
+
+window.addEventListener('load', fetchAllData);
 
 // EVENT LISTENERS //
 
@@ -105,6 +107,13 @@ btnSearchSubmit.addEventListener('click', (event) => {
 
 searchResults.addEventListener('click', (event) => {
   showRoomDetails(event, availableRooms)
+})
+
+searchResults.addEventListener('click', (event) => {
+  if (event.target.classList.contains('book__room')) {
+    const roomToBook = bookRoom(currentCustomer, currentDateValue, currentRoom)
+    postBookedRoom(roomToBook)
+  }
 })
 
 
@@ -195,8 +204,9 @@ const populateRooms = (rooms, section) => {
 }
 
 const populateRoom = (room, section) => {
-  section.innerHTML = '';
-  section.innerHTML = 
+  if (room) {
+    section.innerHTML = '';
+    section.innerHTML = 
     `<div class="current__booking">
       <p>Room Number: ${room.number}</p>
       <p>Room Type: ${room.roomType}</p>
@@ -204,17 +214,10 @@ const populateRoom = (room, section) => {
       <p>Bed Size: ${room.bedSize}</p>
       <p>Number of Beds: ${room.numBeds}</p>
       <p>Cost Per Night: ${room.costPerNight}</p>
+      <button class="book__room" id="room.number">Book Room</button>
     </div>`
+  }
 };
-
-
-// const getTodaysDate = () => {
-//   const currentDate = new Date();
-//   // eslint-disable-next-line max-len
-//   const formattedDate = `${currentDate.getFullYear()}/${currentDate.getMonth()}/${currentDate.getDay()}`;
-//   return formattedDate;
-// };
-
 
 const sortByDate = (bookings) => {
   return bookings.sort((a, b) => new Date(a.bookingDetails.date) - new Date(b.bookingDetails.date))
@@ -239,14 +242,18 @@ const sortByToday = (bookings) => {
 const showBookingDetails = (event, bookings, section) => {
   const target = event.target.id;
   const targetedRoom = bookings.find(booking => booking.bookingDetails.id === target)
-  currentRoom = targetedRoom;
-  populateBooking(currentRoom, section)
+  if (targetedRoom) {
+    currentRoom = targetedRoom;
+    populateBooking(currentRoom, section)
+  }
 };
 
 const showRoomDetails = (event, rooms) => {
   const target = parseInt(event.target.id);
   const targetedRoom = rooms.find(room => room.number === target)
-  currentRoom = targetedRoom;
+  if (targetedRoom) {
+    currentRoom = targetedRoom;
+  }
   populateRoom(currentRoom, searchResults)
 };
 
@@ -279,14 +286,58 @@ const searchRooms = (event) => {
   populateRooms(availableRooms, searchResults)
 };
 
-const searchByDate = (input, bookingsData) => {
-  const dateSplit = input.value.split('-');
-  const formattedDate = `${dateSplit[0]}/${dateSplit[1]}/${dateSplit[2]}`;
-  return filterRoomsByDate(formattedDate, bookingsData);
+const searchByDate = (date, bookingsData) => {
+  currentDateValue = formatDate(date);
+  return filterRoomsByDate(currentDateValue, bookingsData);
+}
+
+const formatDate = (date) => {
+  const dateSplit = date.value.split('-');
+  return `${dateSplit[0]}/${dateSplit[1]}/${dateSplit[2]}`;
 }
 
 const searchByType = (input, data) => {
   const typeFilter = input.value;
   const filteredRooms = filterRoomsByType(typeFilter, data);
   return filteredRooms;
+};
+
+const bookRoom = (currentCustomer, currentDate, currentRoom) => {
+  const bookedRoom = {
+    "userID": currentCustomer.id,
+    "date": currentDate,
+    "roomNumber": currentRoom.number
+  };
+  return bookedRoom;
+}
+  
+  
+const postBookedRoom = (data) => {  
+  fetch('http://localhost:3001/api/v1/bookings', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-type': 'application/json'
+    }
+  })
+    .then(response => {
+      if (response.ok) {
+        console.log(response)
+        return response.json()
+      } else {
+        alert(`${response.status} server request failed, please try again later`)
+        console.error('Request failed with status:', response.status)
+      }
+    })
+    .then(json => {
+      console.log(json)
+      fetch('http://localhost:3001/api/v1/bookings')
+        .then(response => response.json())
+        .then(data => {
+          bookingsData = data.bookings;
+          userBookings = findBookings(currentCustomer, roomsData, bookingsData);
+          userBookings = sortByDate(userBookings);
+        })
+    })
+    .catch(err => console.log(err))
 };
