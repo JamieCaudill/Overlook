@@ -80,9 +80,9 @@ header {
   width: 95vw;
 }
 
-.main__background {
-  /* Add your background image styles here */
-}
+// .main__background {
+//   /* Add your background image styles here */
+// }
 
 .main__form__container {
   text-align: center;
@@ -107,7 +107,14 @@ header {
       color: white;
    }
   }
-  .bookings__past, .bookings__future, .bookings__results {
+
+  .bookings__total__cost {
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+  }
+
+  .bookings__past, .bookings__future, .bookings__results, .bookings__cost {
     display: flex;
     flex-direction: column;
     height: 80%;

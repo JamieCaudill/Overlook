@@ -66,10 +66,6 @@ header {
   width: 95vw;
 }
 
-.main__background {
-  /* Add your background image styles here */
-}
-
 .main__form__container {
   text-align: center;
   margin-bottom: 30px;
@@ -94,12 +90,17 @@ header {
   width: 8em;
   color: white;
 }
-.bookings .bookings__past, .bookings .bookings__future, .bookings .bookings__results {
+.bookings .bookings__total__cost {
   display: flex;
   flex-direction: column;
   height: 80%;
 }
-.bookings .bookings__past .booking, .bookings .bookings__future .booking, .bookings .bookings__results .booking {
+.bookings .bookings__past, .bookings .bookings__future, .bookings .bookings__results, .bookings .bookings__cost {
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+}
+.bookings .bookings__past .booking, .bookings .bookings__future .booking, .bookings .bookings__results .booking, .bookings .bookings__cost .booking {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;

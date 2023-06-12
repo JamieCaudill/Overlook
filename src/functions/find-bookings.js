@@ -10,7 +10,6 @@ const findBookings = (customer, roomsData, bookingsData) => {
     })
     return acc;
   }, [])
-  console.log(bookingInfo)
   return bookingInfo;
 }
 

@@ -7,13 +7,10 @@ const filterRoomsByType = (roomFilter, roomsData) => {
 
   const filteredRooms = roomsData
     .filter(room => {
-      console.log(room.roomType);
       return room.roomType === roomFilter
     })
     .map(data => data.number)
     .sort((a, b) => a - b)
-
-  console.log(filteredRooms)
   return [...new Set(filteredRooms)];
 };
 

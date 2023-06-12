@@ -22,7 +22,6 @@
       <input class="login__username" type="text" placeholder="Username" required>
       <input class="login__password" type="password" placeholder="Password" required>
       <button class="login__submit" type="submit">Login</button>
-      <button class="test">Test</button>
     </form>
   </section>
   <main class="main hidden">
@@ -53,6 +52,7 @@
       <div class="bookings__header">
         <button class="bookings__past__btn">History</button>
         <button class="bookings__future__btn">Upcoming</button>
+        <button class="bookings__cost__btn">Total Cost</button>
       </div>
       <div class="bookings__past hidden">
         <!-- Add bookings and total spent here -->
@@ -63,8 +63,11 @@
       <div class="bookings__results hidden">
         <!-- Add search results here -->
       </div>
-      <div class="room__details">
-       <!-- Room Details here  -->
+      <div class="bookings__total__cost hidden">
+        <div class="bookings__cost">
+          <!-- Cost here  -->
+        </div>
+        <p class="total__cost"></p>
       </div>
     </section>
   </main>
