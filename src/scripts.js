@@ -162,7 +162,7 @@ const getLogin = (event, data) => {
   // }
   
   // TEMPORARY //
-  loginResult = userLogin('customer6', data);
+  loginResult = userLogin('customer7', data);
 
 
   userBookings = findBookings(loginResult, roomsData, bookingsData);
@@ -172,7 +172,7 @@ const getLogin = (event, data) => {
   console.log(currentCustomer);
   headerUsername.innerText = currentCustomer.name;
   hide([loginPage]);
-  show([mainPage]);
+  show([mainPage, headerUsername]);
   return loginResult;
 };
 
@@ -228,7 +228,6 @@ const populateRooms = (rooms, section) => {
 
 const populateRoom = (room, section) => {
   if (room) {
-    console.log(room)
     section.innerHTML = '';
     section.innerHTML = 
     `<div class="current__booking" id=${room.number}>
@@ -362,18 +361,10 @@ const postBookedRoom = (data) => {
       fetch('http://localhost:3001/api/v1/bookings')
         .then(response => response.json())
         .then(data => {
-
           bookingsData = data.bookings;
           userBookings = findBookings(currentCustomer, roomsData, bookingsData);
-          console.log('bookings: ' + userBookings.length)
-          console.log('future bookings: ' + bookingsUpcoming.length)
-          console.log('past bookings: ' + bookingsHistory.length)
           sortByToday(userBookings)
-          console.log('bookings: ' + userBookings.length)
-          console.log('future bookings: ' + bookingsUpcoming.length)
-          console.log('past bookings: ' + bookingsHistory.length)
-          sortByDate(userBookings);
-          
+          sortByDate(userBookings);         
         })
     })
     .catch(err => console.log(err));
