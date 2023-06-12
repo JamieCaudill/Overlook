@@ -204,7 +204,7 @@ const populateBooking = (booking, section) => {
   section.innerHTML = '';
   section.innerHTML = 
     `<div class="current__booking" id=${booking.bookingDetails.id}>
-      <p>Date: ${booking.bookingDetails.date}</p>
+      <p>Date of Stay: ${booking.bookingDetails.date}</p>
       <p>Room Number: ${booking.bookingDetails.roomNumber}</p>
       <p>Room Type: ${booking.roomDetails.roomType}</p>
       <p>Bidet: ${booking.roomDetails.bidet}</p>

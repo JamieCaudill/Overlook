@@ -4,7 +4,7 @@
 
 // VARIABLES //
 
-$primary: #ded8c1;
+$primary: #f4f1e5;
 $secondary: #d3b1a7;
 $tertiary: #cb6550;
 $quaternary: #8cbea3;
@@ -21,6 +21,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Noto Sans', sans-serif;
+  background-color: $primary;
 }
 
 header {
@@ -49,7 +50,6 @@ header {
   .header__username {
     font-size: 1.2em;
     color: darken($quaternary, 20%);
-
   }
 }
 
@@ -124,7 +124,7 @@ header {
       height: 3em;
       opacity: 100%;
       margin: 1em;
-      border: solid black 1px;
+      border: 0;
       border-radius: .5em;
       width: 10em;
       text-align: center;
@@ -145,13 +145,18 @@ header {
     align-items: end;
     button {
       margin: 1em 2em 1em 1em;
-      background-color: $primary;
+      background-color: lighten($tertiary, 8%);
       border: 0;
       border-radius: 0.3em;
       font-size: medium;
-      height: 2em;
+      font-weight: 600;
+      height: 2.5em;
       width: 8em;
-      color: white;
+      color: black;
+      &:hover {
+        cursor: pointer;
+        background-color: darken($tertiary, 5%);
+      }
    }
   }
 
@@ -167,6 +172,7 @@ header {
     .booking {
       display: flex;
       flex-direction: column;
+      background-color: lighten($primary, 10%);
       border: solid black 2px;
       margin: 0.5em;
       border-radius: 1em;
@@ -175,8 +181,29 @@ header {
         margin: 0;
         padding: .3em;
       }
+      button {
+        align-self: center;
+        height: 2em;
+        background-color: lighten($tertiary, 10%);
+        border: 0;
+        border-radius: .5em;
+        font-weight: 400;
+        &:hover {
+          background-color: darken($tertiary, 5%);
+          cursor: pointer;
+        }
+
+      }
     }
   }
+}
+
+.current__booking {
+  border: solid black 2px;
+  margin: 1em;
+  padding: 1em;
+  border-radius: .5em;
+  background-color: lighten($primary, 10%);
 }
 
 

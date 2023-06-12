@@ -7,10 +7,11 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Noto Sans", sans-serif;
+  background-color: #f4f1e5;
 }
 
 header {
-  background-color: #f0ede2;
+  background-color: white;
   display: flex;
   justify-content: space-between;
   padding: 10px 20px;
@@ -71,14 +72,14 @@ header {
 .login__form button {
   width: 100%;
   padding: 10px;
-  background-color: #ded8c1;
+  background-color: #f4f1e5;
   color: #ffffff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 .login__form button:hover {
-  background-color: #ccc3a0;
+  background-color: #e5dec1;
 }
 
 .main {
@@ -96,7 +97,7 @@ header {
   background-size: 100%;
 }
 .main__form__container .main__form {
-  background-color: #f0ede2;
+  background-color: white;
   opacity: 90%;
   width: 100vw;
   text-align: center;
@@ -107,7 +108,7 @@ header {
   height: 3em;
   opacity: 100%;
   margin: 1em;
-  border: solid black 1px;
+  border: 0;
   border-radius: 0.5em;
   width: 10em;
   text-align: center;
@@ -128,13 +129,18 @@ header {
 }
 .bookings .bookings__header button {
   margin: 1em 2em 1em 1em;
-  background-color: #ded8c1;
+  background-color: #d4816f;
   border: 0;
   border-radius: 0.3em;
   font-size: medium;
-  height: 2em;
+  font-weight: 600;
+  height: 2.5em;
   width: 8em;
-  color: white;
+  color: black;
+}
+.bookings .bookings__header button:hover {
+  cursor: pointer;
+  background-color: #c5543c;
 }
 .bookings .bookings__total__cost {
   display: flex;
@@ -148,6 +154,7 @@ header {
 .bookings .bookings__past .booking, .bookings .bookings__future .booking, .bookings .bookings__results .booking, .bookings .bookings__cost .booking {
   display: flex;
   flex-direction: column;
+  background-color: white;
   border: solid black 2px;
   margin: 0.5em;
   border-radius: 1em;
@@ -156,6 +163,26 @@ header {
 .bookings .bookings__past .booking p, .bookings .bookings__future .booking p, .bookings .bookings__results .booking p, .bookings .bookings__cost .booking p {
   margin: 0;
   padding: 0.3em;
+}
+.bookings .bookings__past .booking button, .bookings .bookings__future .booking button, .bookings .bookings__results .booking button, .bookings .bookings__cost .booking button {
+  align-self: center;
+  height: 2em;
+  background-color: #d78877;
+  border: 0;
+  border-radius: 0.5em;
+  font-weight: 400;
+}
+.bookings .bookings__past .booking button:hover, .bookings .bookings__future .booking button:hover, .bookings .bookings__results .booking button:hover, .bookings .bookings__cost .booking button:hover {
+  background-color: #c5543c;
+  cursor: pointer;
+}
+
+.current__booking {
+  border: solid black 2px;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 0.5em;
+  background-color: white;
 }
 
 footer {
