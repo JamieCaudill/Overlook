@@ -70,6 +70,7 @@ const fetchAllData = () => {
                 roomsData = data.rooms;
               } else if (response.url.includes('/bookings')) {
                 bookingsData = data.bookings;
+                getLogin(event, customersData);
               }
             })
             .catch(error => {
@@ -142,7 +143,7 @@ btnTotalCost.addEventListener('click', () => {
 // DOM UPDATES //
 
 const getLogin = (event, data) => {
-  event.preventDefault();
+  // event.preventDefault();
   let loginResult;
   const username = loginUsername.value;
   const password = loginPassword.value;
