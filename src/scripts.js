@@ -115,14 +115,7 @@ searchResults.addEventListener('click', (event) => {
 });
 
 searchResults.addEventListener('click', (event) => {
-  if (event.target.classList.contains('book__room')) {
-    const roomToBook = bookRoom(currentCustomer, currentDateValue, currentRoom);
-    postBookedRoom(roomToBook);
-    searchResults.innerHTML = 
-      `<div class="booking">
-        <p>Get stoked for your trip! Room #${currentRoom.number} booked by ${currentCustomer.name} for ${currentDateValue}</p>
-      </div>`    
-  }
+  bookRoom(event, searchResults);
 });
 
 btnTotalCost.addEventListener('click', () => {
@@ -343,7 +336,7 @@ const searchByType = (input, data) => {
   return filteredRooms;
 };
 
-const bookRoom = (currentCustomer, currentDate, currentRoom) => {
+const getBookedRoom = (currentCustomer, currentDate, currentRoom) => {
   const bookedRoom = {
     "userID": currentCustomer.id,
     "date": currentDate,
@@ -380,6 +373,17 @@ const postBookedRoom = (data) => {
         })
     })
     .catch(err => console.log(err));
+};
+
+const bookRoom = (event, section) => {
+  if (event.target.classList.contains('book__room')) {
+    const roomToBook = getBookedRoom(currentCustomer, currentDateValue, currentRoom);
+    postBookedRoom(roomToBook);
+    section.innerHTML = 
+      `<div class="booking">
+        <p>Get stoked for your trip! Room #${currentRoom.number} booked by ${currentCustomer.name} for ${currentDateValue}</p>
+      </div>`    
+  }
 };
 
 
