@@ -73,6 +73,22 @@ once installed and running:
 
 This project was the final solo project for MOD 2, wrapping up all that we've learned about accessibility, iterators, apis, scope, webpack, and how the internet works.
 
+### Challenges/Wins
+
+Challenges:
+
+- working with large amounts of data from different places
+- utilizing SASS
+- implementing accessibility best practices
+- time management and organization
+
+Wins:
+
+- feeling more comfortable with iterators, css, html etc.
+- no merge conflicts
+- using variables and mixins in index.scss
+- getting better at debugging and refactoring
+
 ### CONTRIBUTORS
 
 Jamie Caudill: <https://github.com/JamieCaudill>
