@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;900&display=swap" rel="stylesheet">
   <title>Webpack Starter Kit</title>
 </head>
 <body>
@@ -13,7 +17,8 @@
       <h1 class="header__text">Overlook</h1>
     </div>
     <div class="header__right">
-      <span class="header__username">Username</span>
+      <span class="header__username hidden">Username</span>
+      <span class="material-symbols-outlined">account_circle</span>
     </div>
   </header>
   <section class="login">
@@ -25,35 +30,29 @@
     </form>
   </section>
   <main class="main hidden">
-    <div class="main__background">
-      <!-- Add image here -->
-    </div>
+    <!-- <div class="main__background">
+      <image src="../images/beach.jpg">
+    </div> -->
     <div class="main__form__container">
       <form class="main__form">
-        <select class="main__room__type" id="room-type">
+        <select class="main__room__type form" id="room-type">
           <option value="" disable selected>Room Type</option>
           <option value="single room">Single</option>
           <option value="suite">Suite</option>
           <option value="residential suite">Residential Suite</option>
           <option value="junior suite">Junior Suite</option>
         </select>
-        <input class="main__date" type="date" id="date" placeholder="Date">
-        <!-- <select class="main__num__people" id="num-people">
-          <option value="" disabled selected>Number of Beds</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-        </select> -->
-        <button class="main__submit" type="submit">Search</button>
+        <input class="main__date form" type="date" id="date" placeholder="Date">
+        <button class="main__submit form" type="submit">Search</button>
       </form>
     </div>
     <section class="bookings">
       <div class="bookings__header">
         <button class="bookings__past__btn">History</button>
         <button class="bookings__future__btn">Upcoming</button>
-        <button class="bookings__cost__btn">Total Cost</button>
+        <button class="bookings__cost__btn">Total Spent</button>
       </div>
+      <h2 class="bookings__subheader"></h2>
       <div class="bookings__past hidden">
         <!-- Add bookings and total spent here -->
       </div>
@@ -64,10 +63,10 @@
         <!-- Add search results here -->
       </div>
       <div class="bookings__total__cost hidden">
+        <p class="total__cost"></p>
         <div class="bookings__cost">
           <!-- Cost here  -->
         </div>
-        <p class="total__cost"></p>
       </div>
     </section>
   </main>

@@ -1,31 +1,79 @@
 /*# sourceMappingURL=index.css.map */
 
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,600&family=Noto+Sans:wght@400;500;600;700;900&display=swap');
 
 // VARIABLES //
 
-$primary-color: #4CAF50;
-$secondary: #1ac886;
-$error: #d32752;
-$info: #f6c31c;
+$primary: #f4f1e5;
+$secondary: #d3b1a7;
+$tertiary: #cb6550;
+$quaternary: #8cbea3;
+$quinary: #dfba46;
+$border-primary: solid black 2px;
+$border-secondary: solid black 1px;
+$radius-primary: .5em;
 
-/* body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-} */
+// MIXINS //
+
+@mixin display-box {
+  display: flex;
+  flex-direction: column;
+  background-color: lighten($primary, 10%);
+  border: $border-primary;
+  margin: 0.5em;
+  border-radius: 1em;
+  padding: 1em;
+}
+
+@mixin details-btn {
+  align-self: center;
+  height: 2em;
+  background-color: lighten($tertiary, 10%);
+  border: 0;
+  border-radius: .5em;
+  font-weight: 400;
+  &:hover {
+    background-color: darken($tertiary, 5%);
+    cursor: pointer;
+  }
+}
+
+// SCSS //
 
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Noto Sans', sans-serif;
+  background-color: $primary;
 }
 
 header {
-  background-color: #f2f2f2;
+  background-color: lighten($primary, 10%);
   display: flex;
   justify-content: space-between;
   padding: 10px 20px;
+  height: 5em;
 }
 
-.header__left .header__text {
+.header__left {
   margin: 0;
+  display: flex;
+  align-items: center;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.5em;
+  color: $quaternary;
+  text-shadow: black 1px 1px 1px;
+}
+
+.header__right {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 15%;
+  .header__username {
+    font-size: 1.2em;
+    color: darken($quaternary, 20%);
+  }
 }
 
 .header__username {
@@ -37,60 +85,93 @@ header {
   align-items: center;
   justify-content: center;
   height: 100vh;
-}
+  .login__form {
+    background-color: $quaternary;
+    padding: 20px;
+    border: $border-secondary;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    h1 {
+      margin-top: 0;
 
-.login__form {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  text-align: center;
-
-  h1 {
-    margin-top: 0;
-  }
-
-  input {
-    display: block;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    width: 100%;
-  }
-
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: $primary-color;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: darken($primary-color, 10%);
+    }
+    input {
+      display: block;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    button {
+      width: 70%;
+      padding: 10px;
+      background-color: lighten($tertiary, 10%);
+      color: black;
+      border: $border-secondary;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      &:hover {
+        background-color: darken($tertiary, 10%);
+        color: white;
+      }
     }
   }
 }
 
 .main {
-  padding: 2em;
-  width: 95vw;
+  width: 100vw;
 }
 
-// .main__background {
-//   /* Add your background image styles here */
-// }
-
 .main__form__container {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30em;
+  width: 100vw;
   margin-bottom: 30px;
+  background-image: url('../images/beach.jpg');
+  background-size: 100%;
+  border: $border-secondary;
+  .main__form {
+    background-color: lighten($primary, 10%);
+    opacity: 85%;
+    width: 60vw;
+    border: $border-primary;
+    border-radius: $radius-primary;
+    text-align: center;
+    .form {
+      background-color: $quinary;
+      font-weight: 600;
+      height: 3em;
+      opacity: 100%;
+      margin: 1em;
+      border: $border-secondary;
+      border-radius: .5em;
+      width: 10em;
+      text-align: center;
+      &:hover {
+        background-color: darken($quinary, 10%);
+        color: white;
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 .bookings {
   height: 100%;
+  .bookings__subheader {
+    margin: 0 .5em 0 0;
+    padding: 1em;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 2em;
+    color: $quaternary;
+    text-shadow: black 1px 1px 1px;
+  }
   .bookings__header {
     height: 3em;
     padding: 0;
@@ -98,13 +179,19 @@ header {
     align-items: end;
     button {
       margin: 1em 2em 1em 1em;
-      background-color: $primary-color;
-      border: 0;
+      background-color: lighten($tertiary, 8%);
+      border: $border-secondary;
       border-radius: 0.3em;
       font-size: medium;
-      height: 2em;
+      font-weight: 600;
+      height: 2.5em;
       width: 8em;
-      color: white;
+      color: black;
+      &:hover {
+        cursor: pointer;
+        background-color: darken($tertiary, 5%);
+        color: white;
+      }
    }
   }
 
@@ -112,23 +199,51 @@ header {
     display: flex;
     flex-direction: column;
     height: 80%;
+    .total__cost {
+      @include display-box;
+      background-color: $quaternary;
+      font-weight: 600;
+      font-size: 1.5em;
+    }
+    .booking__cost {
+      @include display-box;
+      height: 4em;
+      p {
+        margin: .3em;
+      }
+    }
   }
 
   .bookings__past, .bookings__future, .bookings__results, .bookings__cost {
     display: flex;
     flex-direction: column;
-    height: 80%;
     .booking {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        border: solid black 2px;
-        padding: 0.8em;
-        margin: 0.5em;
-        border-radius: 1em;
-        height: 3em;
-        width: 50em;
+      display: flex;
+      flex-direction: column;
+      background-color: lighten($primary, 10%);
+      border: $border-primary;
+      margin: 0.5em;
+      border-radius: 1em;
+      padding: 1em;
+      p {
+        margin: 0;
+        padding: .3em;
+      }
+      button {
+        @include details-btn;
+      }
     }
+  }
+}
+
+.current__booking {
+  border: $border-primary;
+  margin: 1em;
+  padding: 1em;
+  border-radius: .5em;
+  background-color: lighten($primary, 10%);
+  button {
+    @include details-btn;
   }
 }
 

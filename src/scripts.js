@@ -28,6 +28,7 @@ const bookingCostSection = document.querySelector('.bookings__cost');
 const totalCostSection = document.querySelector('.bookings__total__cost');
 const totalCostText = document.querySelector('.total__cost');
 const loginForm = document.querySelector('.login__form');
+const bookingsSubheader = document.querySelector('.bookings__subheader')
 
 
 // buttons //
@@ -44,7 +45,6 @@ const btnTotalCost = document.querySelector('.bookings__cost__btn');
 let customersData = [];
 let roomsData = [];
 let bookingsData = [];
-
 let userBookings = [];
 let bookingsHistory = [];
 let bookingsUpcoming = [];
@@ -90,36 +90,40 @@ window.addEventListener('load', fetchAllData);
 
 loginBtn.addEventListener('click', (event) => {
   getLogin(event, customersData);
-})
+});
 
 btnHistory.addEventListener('click', () => {
   showHistory();
-})
+});
 
 btnUpcoming.addEventListener('click', () => {
   showUpcoming();
-})
+});
 
 pastBookings.addEventListener('click', (event) => {
   showBookingDetails(event, bookingsHistory, pastBookings);
-})
+});
 
 futureBookings.addEventListener('click', (event) => {
   showBookingDetails(event, bookingsUpcoming, futureBookings);
-})
+});
 
 btnSearchSubmit.addEventListener('click', (event) => {
   searchRooms(event);
-})
+});
 
 searchResults.addEventListener('click', (event) => {
   showRoomDetails(event, availableRooms);
-})
+});
 
 searchResults.addEventListener('click', (event) => {
   if (event.target.classList.contains('book__room')) {
     const roomToBook = bookRoom(currentCustomer, currentDateValue, currentRoom);
     postBookedRoom(roomToBook);
+    searchResults.innerHTML = 
+      `<div class="booking">
+        <p>Get stoked for your trip! Room #${currentRoom.number} booked by ${currentCustomer.name} for ${currentDateValue}</p>
+      </div>`    
   }
 });
 
@@ -127,11 +131,11 @@ btnTotalCost.addEventListener('click', () => {
   show([totalCostSection]);
   hide([pastBookings, futureBookings, searchResults])
   const totalCost = findTotalCost(userBookings).toFixed(2);
-  totalCostText.innerText = `$${totalCost}`;
+  bookingsSubheader.innerText = '';
+  totalCostText.innerText = `Total Spent: $${totalCost}`;
   userBookings.forEach(booking => {
     bookingCostSection.innerHTML += 
       `<div class="booking__cost">
-        <p>Room Number: ${booking.roomDetails.number}</p>
         <p>Date: ${booking.bookingDetails.date}</p>
         <p>Cost: ${booking.roomDetails.costPerNight}</p>
       </div>`
@@ -162,16 +166,17 @@ const getLogin = (event, data) => {
   }
   
   // TEMPORARY //
-  // loginResult = userLogin('customer1', data);
+  // loginResult = userLogin('customer7', data);
 
 
   userBookings = findBookings(loginResult, roomsData, bookingsData);
-  userBookings = sortByDate(userBookings);
+  sortByToday(userBookings)
+  sortByDate(userBookings);
   currentCustomer = loginResult;
   console.log(currentCustomer);
   headerUsername.innerText = currentCustomer.name;
   hide([loginPage]);
-  show([mainPage]);
+  show([mainPage, headerUsername]);
   return loginResult;
 };
 
@@ -189,11 +194,11 @@ const populateBookings = (bookings, section) => {
   section.innerHTML = '';
   bookings.forEach(booking => {
     section.innerHTML += 
-      `<div class="booking" id=${booking.bookingDetails.id}>
-        <div class="booking__footer" id=${booking.bookingDetails.id}>
-          <span class="booking__room__type">${booking.roomDetails.roomType}</span>
-          <span class="booking__date">${booking.bookingDetails.date}</span>
-        </div>
+      `<div class="booking">
+        <p>Room Number: ${booking.roomDetails.number}</p>
+        <p>Room Type: ${booking.roomDetails.roomType}</p>
+        <p>Date: ${booking.bookingDetails.date}</p>
+        <button id=${booking.bookingDetails.id}>View Details</button>
       </div>`;
   });
 };
@@ -202,7 +207,7 @@ const populateBooking = (booking, section) => {
   section.innerHTML = '';
   section.innerHTML = 
     `<div class="current__booking" id=${booking.bookingDetails.id}>
-      <p>Date: ${booking.bookingDetails.date}</p>
+      <p>Date of Stay: ${booking.bookingDetails.date}</p>
       <p>Room Number: ${booking.bookingDetails.roomNumber}</p>
       <p>Room Type: ${booking.roomDetails.roomType}</p>
       <p>Bidet: ${booking.roomDetails.bidet}</p>
@@ -216,11 +221,11 @@ const populateRooms = (rooms, section) => {
   section.innerHTML = '';
   rooms.forEach(room => {
     section.innerHTML += 
-      `<div class="booking" id=${room.number}>
-        <div class="booking__footer id=${room.number}>
-          <span class="room__type">${room.roomType}</span>
-          <span class="room__cost">${room.costPerNight}</span>
-        </div>
+      `<div class="booking">
+        <p>Room Number: ${room.number}</p>
+        <p>Room Type: ${room.roomType}</p>
+        <p>Cost Per Night: ${room.costPerNight}</p>
+        <button  id=${room.number}>view details</booking>
       </div>`
   });
 };
@@ -236,7 +241,7 @@ const populateRoom = (room, section) => {
       <p>Bed Size: ${room.bedSize}</p>
       <p>Number of Beds: ${room.numBeds}</p>
       <p>Cost Per Night: ${room.costPerNight}</p>
-      <button class="book__room" id="room.number">Book Room</button>
+      <button class="book__room" id=${room.number}>Book Room</button>
     </div>`
   }
 };
@@ -246,6 +251,8 @@ const sortByDate = (bookings) => {
 };
 
 const sortByToday = (bookings) => {
+  bookingsHistory = [];
+  bookingsUpcoming = [];
   const currentDate = new Date();
   bookings.forEach(booking => {
     const bookingDate = new Date(booking.bookingDetails.date);
@@ -262,6 +269,7 @@ const sortByToday = (bookings) => {
 }
 
 const showBookingDetails = (event, bookings, section) => {
+  bookingsSubheader.innerText = 'Booking Details';
   const target = event.target.id;
   const targetedRoom = bookings.find(booking => booking.bookingDetails.id === target);
   if (targetedRoom) {
@@ -271,32 +279,38 @@ const showBookingDetails = (event, bookings, section) => {
 };
 
 const showRoomDetails = (event, rooms) => {
+  bookingsSubheader.innerText = 'Room Details';
   const target = parseInt(event.target.id);
   const targetedRoom = rooms.find(room => room.number === target);
   if (targetedRoom) {
     currentRoom = targetedRoom;
+    populateRoom(currentRoom, searchResults);
   }
-  populateRoom(currentRoom, searchResults);
 };
 
 const showHistory = () => {
+  bookingsSubheader.innerText = 'Past Stays';
   show([pastBookings]);
   hide([futureBookings, searchResults, totalCostSection]);
-  sortByToday(userBookings);
   sortByDate(bookingsHistory);
   populateBookings(bookingsHistory, pastBookings);
 };
 
 const showUpcoming = () => {
+  bookingsSubheader.innerText = 'Upcoming Stays';
   show([futureBookings]);
   hide([pastBookings, searchResults, totalCostSection]);
   sortByToday(userBookings);
-  sortByDate(bookingsUpcoming);
   populateBookings(bookingsUpcoming, futureBookings);
 };
 
 const searchRooms = (event) => {
   event.preventDefault();
+  if (!dateInput.value) {
+    alert('Please select a date');
+    return;
+  }
+  bookingsSubheader.innerText = 'Available Rooms';
   hide([pastBookings, futureBookings, totalCostSection]);
   show([searchResults]);
   const filteredByDate = searchByDate(dateInput, bookingsData);
@@ -306,7 +320,7 @@ const searchRooms = (event) => {
     availableRooms = getRoomsDetails(filteredByType, roomsData);
   }
   if (!availableRooms.length) {
-    searchResults.innerText = "Holy shit we fucked up we are so damn sorry... there are no rooms. God help us all. Will you ever forgive us."
+    searchResults.innerText = `We are terribly sorry. There are no specified rooms available on ${dateInput.value}.`
   } else {
     populateRooms(availableRooms, searchResults);
   }
@@ -360,7 +374,8 @@ const postBookedRoom = (data) => {
         .then(data => {
           bookingsData = data.bookings;
           userBookings = findBookings(currentCustomer, roomsData, bookingsData);
-          userBookings = sortByDate(userBookings);
+          sortByToday(userBookings)
+          sortByDate(userBookings);         
         })
     })
     .catch(err => console.log(err));

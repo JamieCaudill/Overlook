@@ -1,21 +1,39 @@
 
-/* body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-} */
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,600&family=Noto+Sans:wght@400;500;600;700;900&display=swap");
 body {
   margin: 0;
   padding: 0;
+  font-family: "Noto Sans", sans-serif;
+  background-color: #f4f1e5;
 }
 
 header {
-  background-color: #f2f2f2;
+  background-color: white;
   display: flex;
   justify-content: space-between;
   padding: 10px 20px;
+  height: 5em;
 }
 
-.header__left .header__text {
+.header__left {
   margin: 0;
+  display: flex;
+  align-items: center;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1.5em;
+  color: #8cbea3;
+  text-shadow: black 1px 1px 1px;
+}
+
+.header__right {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 15%;
+}
+.header__right .header__username {
+  font-size: 1.2em;
+  color: #52926f;
 }
 
 .header__username {
@@ -28,18 +46,18 @@ header {
   justify-content: center;
   height: 100vh;
 }
-
-.login__form {
-  background-color: #ffffff;
+.login .login__form {
+  background-color: #8cbea3;
   padding: 20px;
+  border: solid black 1px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
-.login__form h1 {
+.login .login__form h1 {
   margin-top: 0;
 }
-.login__form input {
+.login .login__form input {
   display: block;
   padding: 10px;
   margin-bottom: 10px;
@@ -48,31 +66,71 @@ header {
   box-sizing: border-box;
   width: 100%;
 }
-.login__form button {
-  width: 100%;
+.login .login__form button {
+  width: 70%;
   padding: 10px;
-  background-color: #4CAF50;
-  color: #ffffff;
-  border: none;
+  background-color: #d78877;
+  color: black;
+  border: solid black 1px;
   border-radius: 4px;
+  font-weight: 600;
   cursor: pointer;
 }
-.login__form button:hover {
-  background-color: #3d8b40;
+.login .login__form button:hover {
+  background-color: #b34b35;
+  color: white;
 }
 
 .main {
-  padding: 2em;
-  width: 95vw;
+  width: 100vw;
 }
 
 .main__form__container {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30em;
+  width: 100vw;
   margin-bottom: 30px;
+  background-image: url("../images/beach.jpg");
+  background-size: 100%;
+  border: solid black 1px;
+}
+.main__form__container .main__form {
+  background-color: white;
+  opacity: 85%;
+  width: 60vw;
+  border: solid black 2px;
+  border-radius: 0.5em;
+  text-align: center;
+}
+.main__form__container .main__form .form {
+  background-color: #dfba46;
+  font-weight: 600;
+  height: 3em;
+  opacity: 100%;
+  margin: 1em;
+  border: solid black 1px;
+  border-radius: 0.5em;
+  width: 10em;
+  text-align: center;
+}
+.main__form__container .main__form .form:hover {
+  background-color: #cea524;
+  color: white;
+  cursor: pointer;
 }
 
 .bookings {
   height: 100%;
+}
+.bookings .bookings__subheader {
+  margin: 0 0.5em 0 0;
+  padding: 1em;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 2em;
+  color: #8cbea3;
+  text-shadow: black 1px 1px 1px;
 }
 .bookings .bookings__header {
   height: 3em;
@@ -82,12 +140,18 @@ header {
 }
 .bookings .bookings__header button {
   margin: 1em 2em 1em 1em;
-  background-color: #4CAF50;
-  border: 0;
+  background-color: #d4816f;
+  border: solid black 1px;
   border-radius: 0.3em;
   font-size: medium;
-  height: 2em;
+  font-weight: 600;
+  height: 2.5em;
   width: 8em;
+  color: black;
+}
+.bookings .bookings__header button:hover {
+  cursor: pointer;
+  background-color: #c5543c;
   color: white;
 }
 .bookings .bookings__total__cost {
@@ -95,21 +159,79 @@ header {
   flex-direction: column;
   height: 80%;
 }
+.bookings .bookings__total__cost .total__cost {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: solid black 2px;
+  margin: 0.5em;
+  border-radius: 1em;
+  padding: 1em;
+  background-color: #8cbea3;
+  font-weight: 600;
+  font-size: 1.5em;
+}
+.bookings .bookings__total__cost .booking__cost {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: solid black 2px;
+  margin: 0.5em;
+  border-radius: 1em;
+  padding: 1em;
+  height: 4em;
+}
+.bookings .bookings__total__cost .booking__cost p {
+  margin: 0.3em;
+}
 .bookings .bookings__past, .bookings .bookings__future, .bookings .bookings__results, .bookings .bookings__cost {
   display: flex;
   flex-direction: column;
-  height: 80%;
 }
 .bookings .bookings__past .booking, .bookings .bookings__future .booking, .bookings .bookings__results .booking, .bookings .bookings__cost .booking {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  background-color: white;
   border: solid black 2px;
-  padding: 0.8em;
   margin: 0.5em;
   border-radius: 1em;
-  height: 3em;
-  width: 50em;
+  padding: 1em;
+}
+.bookings .bookings__past .booking p, .bookings .bookings__future .booking p, .bookings .bookings__results .booking p, .bookings .bookings__cost .booking p {
+  margin: 0;
+  padding: 0.3em;
+}
+.bookings .bookings__past .booking button, .bookings .bookings__future .booking button, .bookings .bookings__results .booking button, .bookings .bookings__cost .booking button {
+  align-self: center;
+  height: 2em;
+  background-color: #d78877;
+  border: 0;
+  border-radius: 0.5em;
+  font-weight: 400;
+}
+.bookings .bookings__past .booking button:hover, .bookings .bookings__future .booking button:hover, .bookings .bookings__results .booking button:hover, .bookings .bookings__cost .booking button:hover {
+  background-color: #c5543c;
+  cursor: pointer;
+}
+
+.current__booking {
+  border: solid black 2px;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 0.5em;
+  background-color: white;
+}
+.current__booking button {
+  align-self: center;
+  height: 2em;
+  background-color: #d78877;
+  border: 0;
+  border-radius: 0.5em;
+  font-weight: 400;
+}
+.current__booking button:hover {
+  background-color: #c5543c;
+  cursor: pointer;
 }
 
 footer {
