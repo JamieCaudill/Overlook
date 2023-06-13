@@ -19,7 +19,7 @@ $radius-primary: .5em;
   display: flex;
   flex-direction: column;
   background-color: lighten($primary, 10%);
-  border: solid black 2px;
+  border: $border-primary;
   margin: 0.5em;
   border-radius: 1em;
   padding: 1em;
@@ -135,7 +135,7 @@ header {
   margin-bottom: 30px;
   background-image: url('../images/beach.jpg');
   background-size: 100%;
-  border: solid black 1px;
+  border: $border-secondary;
   .main__form {
     background-color: lighten($primary, 10%);
     opacity: 85%;
@@ -237,7 +237,7 @@ header {
 }
 
 .current__booking {
-  border: solid black 2px;
+  border: $border-primary;
   margin: 1em;
   padding: 1em;
   border-radius: .5em;

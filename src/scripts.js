@@ -308,6 +308,7 @@ const searchRooms = (event) => {
   event.preventDefault();
   if (!dateInput.value) {
     alert('Please select a date');
+    return;
   }
   bookingsSubheader.innerText = 'Available Rooms';
   hide([pastBookings, futureBookings, totalCostSection]);
