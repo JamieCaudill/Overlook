@@ -1,8 +1,5 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,600&family=Noto+Sans:wght@400;500;600;700;900&display=swap");
-/* body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-} */
 body {
   margin: 0;
   padding: 0;
@@ -74,7 +71,7 @@ header {
   padding: 10px;
   background-color: #f4f1e5;
   color: #ffffff;
-  border: none;
+  border: solid black 1px;
   border-radius: 4px;
   cursor: pointer;
 }
@@ -95,11 +92,14 @@ header {
   margin-bottom: 30px;
   background-image: url("../images/beach.jpg");
   background-size: 100%;
+  border: solid black 1px;
 }
 .main__form__container .main__form {
   background-color: white;
-  opacity: 90%;
-  width: 100vw;
+  opacity: 85%;
+  width: 60vw;
+  border: solid black 2px;
+  border-radius: 0.5em;
   text-align: center;
 }
 .main__form__container .main__form .form {
@@ -108,13 +108,14 @@ header {
   height: 3em;
   opacity: 100%;
   margin: 1em;
-  border: 0;
+  border: solid black 1px;
   border-radius: 0.5em;
   width: 10em;
   text-align: center;
 }
 .main__form__container .main__form .form:hover {
   background-color: #cea524;
+  color: white;
   cursor: pointer;
 }
 
@@ -138,7 +139,7 @@ header {
 .bookings .bookings__header button {
   margin: 1em 2em 1em 1em;
   background-color: #d4816f;
-  border: 0;
+  border: solid black 1px;
   border-radius: 0.3em;
   font-size: medium;
   font-weight: 600;
@@ -149,6 +150,7 @@ header {
 .bookings .bookings__header button:hover {
   cursor: pointer;
   background-color: #c5543c;
+  color: white;
 }
 .bookings .bookings__total__cost {
   display: flex;

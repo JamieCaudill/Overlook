@@ -9,9 +9,9 @@ $secondary: #d3b1a7;
 $tertiary: #cb6550;
 $quaternary: #8cbea3;
 $quinary: #dfba46;
-
-$error: #d32752;
-$info: #f6c31c;
+$border-primary: solid black 2px;
+$border-secondary: solid black 1px;
+$radius-primary: .5em;
 
 // MIXINS //
 
@@ -37,10 +37,6 @@ $info: #f6c31c;
     cursor: pointer;
   }
 }
-
-/* body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-} */
 
 body {
   margin: 0;
@@ -115,7 +111,7 @@ header {
     padding: 10px;
     background-color: $primary;
     color: #ffffff;
-    border: none;
+    border: $border-secondary;
     border-radius: 4px;
     cursor: pointer;
 
@@ -138,10 +134,13 @@ header {
   margin-bottom: 30px;
   background-image: url('../images/beach.jpg');
   background-size: 100%;
+  border: solid black 1px;
   .main__form {
     background-color: lighten($primary, 10%);
-    opacity: 90%;
-    width: 100vw;
+    opacity: 85%;
+    width: 60vw;
+    border: $border-primary;
+    border-radius: $radius-primary;
     text-align: center;
     .form {
       background-color: $quinary;
@@ -149,12 +148,13 @@ header {
       height: 3em;
       opacity: 100%;
       margin: 1em;
-      border: 0;
+      border: $border-secondary;
       border-radius: .5em;
       width: 10em;
       text-align: center;
       &:hover {
         background-color: darken($quinary, 10%);
+        color: white;
         cursor: pointer;
       }
     }
@@ -179,7 +179,7 @@ header {
     button {
       margin: 1em 2em 1em 1em;
       background-color: lighten($tertiary, 8%);
-      border: 0;
+      border: $border-secondary;
       border-radius: 0.3em;
       font-size: medium;
       font-weight: 600;
@@ -189,6 +189,7 @@ header {
       &:hover {
         cursor: pointer;
         background-color: darken($tertiary, 5%);
+        color: white;
       }
    }
   }
@@ -219,7 +220,7 @@ header {
       display: flex;
       flex-direction: column;
       background-color: lighten($primary, 10%);
-      border: solid black 2px;
+      border: $border-primary;
       margin: 0.5em;
       border-radius: 1em;
       padding: 1em;
