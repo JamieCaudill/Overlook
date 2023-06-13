@@ -4,7 +4,6 @@
 // IMPORTS //
 
 import './css/index.css';
-// import './images/turing-logo.png';
 import { userLogin, checkPassword } from './functions/login';
 import findBookings from './functions/find-bookings';
 import { filterRoomsByDate, filterRoomsByType, getRoomsDetails } from './functions/filter-rooms';
@@ -12,38 +11,38 @@ import findTotalCost from './functions/find-total-cost';
 
 // QUERY SELECTORS //
 
+const loginForm = document.querySelector('.login__form');
 const loginUsername = document.querySelector('.login__username');
 const loginPassword = document.querySelector('.login__password');
-const loginBtn = document.querySelector('.login__submit');
 const loginPage = document.querySelector('.login');
 const mainPage = document.querySelector('.main');
-const pastBookings = document.querySelector('.bookings__past');
-const futureBookings = document.querySelector('.bookings__future');
-const searchResults = document.querySelector('.bookings__results');
 const headerUsername = document.querySelector('.header__username');
+const searchResults = document.querySelector('.bookings__results');
 const dateInput = document.querySelector('.main__date');
 const typeInput = document.querySelector('.main__room__type');
+const pastBookings = document.querySelector('.bookings__past');
+const futureBookings = document.querySelector('.bookings__future');
 const bookingCostSection = document.querySelector('.bookings__cost');
+const bookingsSubheader = document.querySelector('.bookings__subheader')
 const totalCostSection = document.querySelector('.bookings__total__cost');
 const totalCostText = document.querySelector('.total__cost');
-const loginForm = document.querySelector('.login__form');
-const bookingsSubheader = document.querySelector('.bookings__subheader')
 
+// BUTTONS //
 
-// buttons //
-
+const loginBtn = document.querySelector('.login__submit');
 const btnHistory = document.querySelector('.bookings__past__btn');
 const btnUpcoming = document.querySelector('.bookings__future__btn');
 const btnSearchSubmit = document.querySelector('.main__submit');
 const btnTotalCost = document.querySelector('.bookings__cost__btn');
 
-
-
-// DATA MODEL //
+// FETCHED DATA //
 
 let customersData = [];
 let roomsData = [];
 let bookingsData = [];
+
+// GLOBAL VARIABLES //
+
 let userBookings = [];
 let bookingsHistory = [];
 let bookingsUpcoming = [];
@@ -81,7 +80,7 @@ const fetchAllData = () => {
         }
       });
     });
-}
+};
 
 window.addEventListener('load', fetchAllData);
 
