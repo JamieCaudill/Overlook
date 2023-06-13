@@ -8,10 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-  <title>Webpack Starter Kit</title>
+  <title>Overlook by Jamie</title>
 </head>
 <body>
-  <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
   <header class="header">
     <div class="header__left">
       <h1 class="header__text">Overlook</h1>
@@ -30,11 +29,9 @@
     </form>
   </section>
   <main class="main hidden">
-    <!-- <div class="main__background">
-      <image src="../images/beach.jpg">
-    </div> -->
     <div class="main__form__container">
       <form class="main__form">
+        <label for="room-type">Select Room Type:</label>
         <select class="main__room__type form" id="room-type">
           <option value="" disable selected>Room Type</option>
           <option value="single room">Single</option>
@@ -42,16 +39,17 @@
           <option value="residential suite">Residential Suite</option>
           <option value="junior suite">Junior Suite</option>
         </select>
+        <label for="date">Select Date:</label>
         <input class="main__date form" type="date" id="date" placeholder="Date">
         <button class="main__submit form" type="submit">Search</button>
       </form>
     </div>
     <section class="bookings">
-      <div class="bookings__header">
+      <nav class="bookings__header">
         <button class="bookings__past__btn">History</button>
         <button class="bookings__future__btn">Upcoming</button>
         <button class="bookings__cost__btn">Total Spent</button>
-      </div>
+      </nav>
       <h2 class="bookings__subheader"></h2>
       <div class="bookings__past hidden">
         <!-- Add bookings and total spent here -->

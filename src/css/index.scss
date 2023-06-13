@@ -61,7 +61,7 @@ header {
   align-items: center;
   font-family: 'Josefin Sans', sans-serif;
   font-size: 1.5em;
-  color: $quaternary;
+  color: darken($quaternary, 10%);
   text-shadow: black 1px 1px 1px;
 }
 
