@@ -1,5 +1,6 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,600&family=Noto+Sans:wght@400;500;600;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;900&display=swap");
 body {
   margin: 0;
   padding: 0;
@@ -21,7 +22,7 @@ header {
   align-items: center;
   font-family: "Josefin Sans", sans-serif;
   font-size: 1.5em;
-  color: #8cbea3;
+  color: #6bac89;
   text-shadow: black 1px 1px 1px;
 }
 
@@ -99,26 +100,28 @@ header {
 .main__form__container .main__form {
   background-color: white;
   opacity: 85%;
-  width: 60vw;
+  width: 80vw;
   border: solid black 2px;
   border-radius: 0.5em;
   text-align: center;
+}
+.main__form__container .main__form label {
+  font-size: 0.7em;
 }
 .main__form__container .main__form .form {
   background-color: #dfba46;
   font-weight: 600;
   height: 3em;
-  opacity: 100%;
   margin: 1em;
   border: solid black 1px;
   border-radius: 0.5em;
   width: 10em;
   text-align: center;
+  cursor: pointer;
 }
 .main__form__container .main__form .form:hover {
   background-color: #cea524;
   color: white;
-  cursor: pointer;
 }
 
 .bookings {
@@ -136,7 +139,7 @@ header {
   height: 3em;
   padding: 0;
   display: flex;
-  align-items: end;
+  align-items: flex-end;
 }
 .bookings .bookings__header button {
   margin: 1em 2em 1em 1em;
@@ -148,9 +151,9 @@ header {
   height: 2.5em;
   width: 8em;
   color: black;
+  cursor: pointer;
 }
 .bookings .bookings__header button:hover {
-  cursor: pointer;
   background-color: #c5543c;
   color: white;
 }

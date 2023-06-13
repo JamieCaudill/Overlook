@@ -4,7 +4,6 @@ const filterRoomsByType = (roomFilter, roomsData) => {
   if (!roomFilter) {
     return [];
   }
-
   const filteredRooms = roomsData
     .filter(room => {
       return room.roomType === roomFilter
@@ -28,11 +27,9 @@ const filterRoomsByDate = (date, bookingsData) => {
       return acc;
     }, [])
     .sort((a, b) => a - b);
-  // eslint-disable-next-line max-len
   return sortedRoomNumbers.filter(number => !unavailableRooms.includes(number));
 };
 
-// function that takes in a room number and returns details
 const getRoomsDetails = (roomNumbers, roomsData) => {
   return roomsData.reduce((acc, room) => {
     roomNumbers.forEach(roomNumber => {
@@ -42,6 +39,6 @@ const getRoomsDetails = (roomNumbers, roomsData) => {
     }) 
     return acc;
   }, []);
-}
+};
 
 export { filterRoomsByDate, filterRoomsByType, getRoomsDetails };
