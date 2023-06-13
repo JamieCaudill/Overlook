@@ -10,7 +10,6 @@ import findBookings from './functions/find-bookings';
 import { filterRoomsByDate, filterRoomsByType, getRoomsDetails } from './functions/filter-rooms';
 import findTotalCost from './functions/find-total-cost';
 
-
 // QUERY SELECTORS //
 
 const loginUsername = document.querySelector('.login__username');
