@@ -82,9 +82,11 @@ const fetchAllData = () => {
     });
 };
 
-window.addEventListener('load', fetchAllData);
-
 // EVENT LISTENERS //
+
+window.addEventListener('load', () => {
+  fetchAllData();
+});
 
 loginBtn.addEventListener('click', (event) => {
   checkLogin(event, customersData);
@@ -122,6 +124,16 @@ btnTotalCost.addEventListener('click', () => {
   showTotalCost(userBookings, bookingCostSection);
 });
 
+// MODIFIERS //
+
+const show = (names) => {
+  names.forEach((name) => name.classList.remove('hidden'));
+};
+
+const hide = (names) => {
+  names.forEach((name) => name.classList.add('hidden'));
+};
+
 // DOM UPDATES //
 
 const checkLogin = (event, data) => {
@@ -148,16 +160,6 @@ const getLoggedIn = (bookings) => {
   sortByToday(bookings)
   sortByDate(bookings);
   headerUsername.innerText = currentCustomer.name;
-};
-
-// MODIFIERS //
-
-const show = (names) => {
-  names.forEach((name) => name.classList.remove('hidden'));
-};
-
-const hide = (names) => {
-  names.forEach((name) => name.classList.add('hidden'));
 };
 
 const populateBookings = (bookings, section) => {
@@ -273,6 +275,7 @@ const showUpcoming = () => {
   sortByToday(userBookings);
   populateBookings(bookingsUpcoming, futureBookings);
 };
+
 const showTotalCost = (bookings, section) => {
   show([totalCostSection]);
   hide([pastBookings, futureBookings, searchResults])
