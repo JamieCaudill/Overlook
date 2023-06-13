@@ -121,6 +121,14 @@ header {
 .bookings {
   height: 100%;
 }
+.bookings .bookings__subheader {
+  margin: 0 0.5em 0 0;
+  padding: 1em;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 2em;
+  color: #8cbea3;
+  text-shadow: black 1px 1px 1px;
+}
 .bookings .bookings__header {
   height: 3em;
   padding: 0;
@@ -146,6 +154,31 @@ header {
   display: flex;
   flex-direction: column;
   height: 80%;
+}
+.bookings .bookings__total__cost .total__cost {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: solid black 2px;
+  margin: 0.5em;
+  border-radius: 1em;
+  padding: 1em;
+  background-color: #8cbea3;
+  font-weight: 600;
+  font-size: 1.5em;
+}
+.bookings .bookings__total__cost .booking__cost {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: solid black 2px;
+  margin: 0.5em;
+  border-radius: 1em;
+  padding: 1em;
+  height: 4em;
+}
+.bookings .bookings__total__cost .booking__cost p {
+  margin: 0.3em;
 }
 .bookings .bookings__past, .bookings .bookings__future, .bookings .bookings__results, .bookings .bookings__cost {
   display: flex;
@@ -183,6 +216,18 @@ header {
   padding: 1em;
   border-radius: 0.5em;
   background-color: white;
+}
+.current__booking button {
+  align-self: center;
+  height: 2em;
+  background-color: #d78877;
+  border: 0;
+  border-radius: 0.5em;
+  font-weight: 400;
+}
+.current__booking button:hover {
+  background-color: #c5543c;
+  cursor: pointer;
 }
 
 footer {

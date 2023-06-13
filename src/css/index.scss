@@ -13,6 +13,31 @@ $quinary: #dfba46;
 $error: #d32752;
 $info: #f6c31c;
 
+// MIXINS //
+
+@mixin display-box {
+  display: flex;
+  flex-direction: column;
+  background-color: lighten($primary, 10%);
+  border: solid black 2px;
+  margin: 0.5em;
+  border-radius: 1em;
+  padding: 1em;
+}
+
+@mixin details-btn {
+  align-self: center;
+  height: 2em;
+  background-color: lighten($tertiary, 10%);
+  border: 0;
+  border-radius: .5em;
+  font-weight: 400;
+  &:hover {
+    background-color: darken($tertiary, 5%);
+    cursor: pointer;
+  }
+}
+
 /* body {
   background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
 } */
@@ -138,6 +163,14 @@ header {
 
 .bookings {
   height: 100%;
+  .bookings__subheader {
+    margin: 0 .5em 0 0;
+    padding: 1em;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 2em;
+    color: $quaternary;
+    text-shadow: black 1px 1px 1px;
+  }
   .bookings__header {
     height: 3em;
     padding: 0;
@@ -164,6 +197,19 @@ header {
     display: flex;
     flex-direction: column;
     height: 80%;
+    .total__cost {
+      @include display-box;
+      background-color: $quaternary;
+      font-weight: 600;
+      font-size: 1.5em;
+    }
+    .booking__cost {
+      @include display-box;
+      height: 4em;
+      p {
+        margin: .3em;
+      }
+    }
   }
 
   .bookings__past, .bookings__future, .bookings__results, .bookings__cost {
@@ -182,17 +228,7 @@ header {
         padding: .3em;
       }
       button {
-        align-self: center;
-        height: 2em;
-        background-color: lighten($tertiary, 10%);
-        border: 0;
-        border-radius: .5em;
-        font-weight: 400;
-        &:hover {
-          background-color: darken($tertiary, 5%);
-          cursor: pointer;
-        }
-
+        @include details-btn;
       }
     }
   }
@@ -204,6 +240,9 @@ header {
   padding: 1em;
   border-radius: .5em;
   background-color: lighten($primary, 10%);
+  button {
+    @include details-btn;
+  }
 }
 
 

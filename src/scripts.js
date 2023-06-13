@@ -28,6 +28,7 @@ const bookingCostSection = document.querySelector('.bookings__cost');
 const totalCostSection = document.querySelector('.bookings__total__cost');
 const totalCostText = document.querySelector('.total__cost');
 const loginForm = document.querySelector('.login__form');
+const bookingsSubheader = document.querySelector('.bookings__subheader')
 
 
 // buttons //
@@ -120,7 +121,10 @@ searchResults.addEventListener('click', (event) => {
   if (event.target.classList.contains('book__room')) {
     const roomToBook = bookRoom(currentCustomer, currentDateValue, currentRoom);
     postBookedRoom(roomToBook);
-    searchResults.innerHTML = `Room ${currentRoom.number} booked by ${currentCustomer.name} on ${currentDateValue}`
+    searchResults.innerHTML = 
+      `<div class="booking">
+        <p>Get stoked for your trip! Room #${currentRoom.number} booked by ${currentCustomer.name} for ${currentDateValue}</p>
+      </div>`    
   }
 });
 
@@ -128,11 +132,11 @@ btnTotalCost.addEventListener('click', () => {
   show([totalCostSection]);
   hide([pastBookings, futureBookings, searchResults])
   const totalCost = findTotalCost(userBookings).toFixed(2);
-  totalCostText.innerText = `$${totalCost}`;
+  bookingsSubheader.innerText = '';
+  totalCostText.innerText = `Total Spent: $${totalCost}`;
   userBookings.forEach(booking => {
     bookingCostSection.innerHTML += 
       `<div class="booking__cost">
-        <p>Room Number: ${booking.roomDetails.number}</p>
         <p>Date: ${booking.bookingDetails.date}</p>
         <p>Cost: ${booking.roomDetails.costPerNight}</p>
       </div>`
@@ -231,14 +235,14 @@ const populateRoom = (room, section) => {
   if (room) {
     section.innerHTML = '';
     section.innerHTML = 
-    `<div class="current__booking" id=${room.number}>
+    `<div class="current__booking">
       <p>Room Number: ${room.number}</p>
       <p>Room Type: ${room.roomType}</p>
       <p>Bidet: ${room.bidet}</p>
       <p>Bed Size: ${room.bedSize}</p>
       <p>Number of Beds: ${room.numBeds}</p>
       <p>Cost Per Night: ${room.costPerNight}</p>
-      <button class="book__room" id="room.number">Book Room</button>
+      <button class="book__room" id=${room.number}>Book Room</button>
     </div>`
   }
 };
@@ -266,6 +270,7 @@ const sortByToday = (bookings) => {
 }
 
 const showBookingDetails = (event, bookings, section) => {
+  bookingsSubheader.innerText = 'Booking Details';
   const target = event.target.id;
   const targetedRoom = bookings.find(booking => booking.bookingDetails.id === target);
   if (targetedRoom) {
@@ -275,24 +280,25 @@ const showBookingDetails = (event, bookings, section) => {
 };
 
 const showRoomDetails = (event, rooms) => {
+  bookingsSubheader.innerText = 'Room Details';
   const target = parseInt(event.target.id);
-
   const targetedRoom = rooms.find(room => room.number === target);
   if (targetedRoom) {
     currentRoom = targetedRoom;
+    populateRoom(currentRoom, searchResults);
   }
-  populateRoom(currentRoom, searchResults);
 };
 
 const showHistory = () => {
+  bookingsSubheader.innerText = 'Past Stays';
   show([pastBookings]);
   hide([futureBookings, searchResults, totalCostSection]);
-  // sortByToday(userBookings);
   sortByDate(bookingsHistory);
   populateBookings(bookingsHistory, pastBookings);
 };
 
 const showUpcoming = () => {
+  bookingsSubheader.innerText = 'Upcoming Stays';
   show([futureBookings]);
   hide([pastBookings, searchResults, totalCostSection]);
   sortByToday(userBookings);
@@ -301,6 +307,10 @@ const showUpcoming = () => {
 
 const searchRooms = (event) => {
   event.preventDefault();
+  if (!dateInput.value) {
+    alert('Please select a date');
+  }
+  bookingsSubheader.innerText = 'Available Rooms';
   hide([pastBookings, futureBookings, totalCostSection]);
   show([searchResults]);
   const filteredByDate = searchByDate(dateInput, bookingsData);
@@ -310,7 +320,7 @@ const searchRooms = (event) => {
     availableRooms = getRoomsDetails(filteredByType, roomsData);
   }
   if (!availableRooms.length) {
-    searchResults.innerText = "Holy shit we fucked up we are so damn sorry... there are no rooms. God help us all. Will you ever forgive us."
+    searchResults.innerText = `We are terribly sorry. There are no specified rooms available on ${dateInput.value}.`
   } else {
     populateRooms(availableRooms, searchResults);
   }
