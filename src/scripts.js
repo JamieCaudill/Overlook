@@ -297,6 +297,10 @@ const searchRooms = (event) => {
     alert('Please select a date');
     return;
   }
+  if (new Date(dateInput.value) < new Date()) {
+    alert('Please select a future date');
+    return;
+  }
   bookingsSubheader.innerText = 'Available Rooms';
   hide([pastBookings, futureBookings, totalCostSection]);
   show([searchResults]);
