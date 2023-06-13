@@ -9,7 +9,7 @@ const userLogin = (username, customersData) => {
 };
 
 const checkPassword = (password) => {
-  if (password === 'Overlook2021') {
+  if (password === 'overlook2021') {
     return true;
   } 
   return false;
