@@ -1,9 +1,13 @@
 // LOGIN FUNCTIONS //
 
 const userLogin = (username, customersData) => {
-  const customerNumber = username.split('customer')[1];
+  const splitUsername = username.split('customer');
+  if (splitUsername.length > 2) {
+    return;
+  }
+  const customerNumber = splitUsername[1];
   if (!customerNumber) {
-    return '';
+    return;
   }
   return customersData.find(customer => customer.id === parseInt(customerNumber));
 };

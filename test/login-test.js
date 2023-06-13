@@ -17,10 +17,10 @@ describe('userLogin', () => {
     expect(customer.name).to.equal("Kennedi Emard");
   });
 
-  it('should return an empty string if username format is incorrect', () => {
-    const username = 'mrpickles44';
+  it('should return undefined if username format is incorrect', () => {
+    const username = 'mrpicklescustomer44';
     const customer = userLogin(username, sampleCustomers);
-    expect(customer).to.equal('');
+    expect(customer).to.equal(undefined);
   });
 
   it('should return undefined if user cannot be found', () => {
@@ -32,7 +32,7 @@ describe('userLogin', () => {
 
 describe('checkPassword', () => {
   it('should take in a password and return true if correct', () => {
-    const password = 'Overlook2021';
+    const password = 'overlook2021';
     const isPasswordGood = checkPassword(password);
     expect(isPasswordGood).to.equal(true);
   });
