@@ -119,18 +119,7 @@ searchResults.addEventListener('click', (event) => {
 });
 
 btnTotalCost.addEventListener('click', () => {
-  show([totalCostSection]);
-  hide([pastBookings, futureBookings, searchResults])
-  const totalCost = findTotalCost(userBookings).toFixed(2);
-  bookingsSubheader.innerText = '';
-  totalCostText.innerText = `Total Spent: $${totalCost}`;
-  userBookings.forEach(booking => {
-    bookingCostSection.innerHTML += 
-      `<div class="booking__cost">
-        <p>Date: ${booking.bookingDetails.date}</p>
-        <p>Cost: ${booking.roomDetails.costPerNight}</p>
-      </div>`
-  })
+  showTotalCost(userBookings, bookingCostSection)
 })
 
 
@@ -294,6 +283,20 @@ const showUpcoming = () => {
   sortByToday(userBookings);
   populateBookings(bookingsUpcoming, futureBookings);
 };
+const showTotalCost = (bookings, section) => {
+  show([totalCostSection]);
+  hide([pastBookings, futureBookings, searchResults])
+  const totalCost = findTotalCost(bookings).toFixed(2);
+  bookingsSubheader.innerText = '';
+  totalCostText.innerText = `Total Spent: $${totalCost}`;
+  bookings.forEach(booking => {
+    section.innerHTML += 
+    `<div class="booking__cost">
+      <p>Date: ${booking.bookingDetails.date}</p>
+      <p>Cost: ${booking.roomDetails.costPerNight}</p>
+    </div>`
+  })
+}
 
 const searchRooms = (event) => {
   event.preventDefault();
