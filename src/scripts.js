@@ -46,7 +46,7 @@ let bookingsData = [];
 let userBookings = [];
 let bookingsHistory = [];
 let bookingsUpcoming = [];
-let currentCustomer = {};
+let currentCustomer;
 let currentRoom = {};
 let currentDateValue = '';
 let availableRooms = [];
@@ -87,7 +87,7 @@ window.addEventListener('load', fetchAllData);
 // EVENT LISTENERS //
 
 loginBtn.addEventListener('click', (event) => {
-  getLogin(event, customersData);
+  checkLogin(event, customersData);
 });
 
 btnHistory.addEventListener('click', () => {
@@ -119,45 +119,35 @@ searchResults.addEventListener('click', (event) => {
 });
 
 btnTotalCost.addEventListener('click', () => {
-  showTotalCost(userBookings, bookingCostSection)
-})
-
+  showTotalCost(userBookings, bookingCostSection);
+});
 
 // DOM UPDATES //
 
-const getLogin = (event, data) => {
+const checkLogin = (event, data) => {
   event.preventDefault();
-  let loginResult;
-  const username = loginUsername.value;
-  const password = loginPassword.value;
-  
-  if (checkPassword(password)) {
-    loginResult = userLogin(username, data);
+  if (checkPassword(loginPassword.value)) {
+    currentCustomer = userLogin(loginUsername.value, data);
   } else {
     loginForm.reset();
     alert('Incorrect password');
     return;
   }
-
-  if (!loginResult) {
+  if (!currentCustomer) {
     loginForm.reset();
     alert('Username not recognized') 
     return;
   }
-  
-  // TEMPORARY //
-  // loginResult = userLogin('customer7', data);
+  userBookings = findBookings(currentCustomer, roomsData, bookingsData);
+  getLoggedIn(userBookings, currentCustomer);
+};
 
-
-  userBookings = findBookings(loginResult, roomsData, bookingsData);
-  sortByToday(userBookings)
-  sortByDate(userBookings);
-  currentCustomer = loginResult;
-  console.log(currentCustomer);
-  headerUsername.innerText = currentCustomer.name;
+const getLoggedIn = (bookings) => {
   hide([loginPage]);
   show([mainPage, headerUsername]);
-  return loginResult;
+  sortByToday(bookings)
+  sortByDate(bookings);
+  headerUsername.innerText = currentCustomer.name;
 };
 
 // MODIFIERS //
@@ -296,7 +286,7 @@ const showTotalCost = (bookings, section) => {
       <p>Cost: ${booking.roomDetails.costPerNight}</p>
     </div>`
   })
-}
+};
 
 const searchRooms = (event) => {
   event.preventDefault();
