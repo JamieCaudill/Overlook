@@ -4,7 +4,7 @@
 // IMPORTS //
 
 import './css/index.css';
-import './images/turing-logo.png';
+// import './images/turing-logo.png';
 import { userLogin, checkPassword } from './functions/login';
 import findBookings from './functions/find-bookings';
 import { filterRoomsByDate, filterRoomsByType, getRoomsDetails } from './functions/filter-rooms';
@@ -319,7 +319,10 @@ const searchRooms = (event) => {
     availableRooms = getRoomsDetails(filteredByType, roomsData);
   }
   if (!availableRooms.length) {
-    searchResults.innerText = `We are terribly sorry. There are no specified rooms available on ${dateInput.value}.`
+    searchResults.innerHTML = 
+      `<div class="booking">
+        <p>We are terribly sorry. There are no specified rooms available on ${dateInput.value}.</p>
+      </div>`  
   } else {
     populateRooms(availableRooms, searchResults);
   }
