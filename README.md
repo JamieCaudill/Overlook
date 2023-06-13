@@ -58,6 +58,12 @@ once installed and running:
 -cd into the repo
 -run `npm test` in the terminal
 
+### ACCESSIBILITY
+
+- Scored 100 on Lighthouse's accessibility test
+- Changes reccomended by WAVE were implemented, including adding labels to the form and increasing the contrast of headers
+- Tested for tabability and color-blindness
+
 ### PREVIEW
 
 ![app preview](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNThhYmJkZTRjY2IzMTQzNWI5NGFkNjk4ZDQ0NTQyY2Q0YWE1NmYwNyZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/FUQ9wpu90OVzACbbb9/giphy.gif)
