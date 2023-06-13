@@ -17,6 +17,7 @@ const loginPassword = document.querySelector('.login__password');
 const loginPage = document.querySelector('.login');
 const mainPage = document.querySelector('.main');
 const headerUsername = document.querySelector('.header__username');
+const mainFormContainer = document.querySelector('.main__form__container');
 const searchResults = document.querySelector('.bookings__results');
 const dateInput = document.querySelector('.main__date');
 const typeInput = document.querySelector('.main__room__type');
@@ -261,6 +262,7 @@ const showRoomDetails = (event, rooms) => {
 };
 
 const showHistory = () => {
+  mainFormContainer.style.height = '10em';
   bookingsSubheader.innerText = 'Past Stays';
   show([pastBookings]);
   hide([futureBookings, searchResults, totalCostSection]);
@@ -269,6 +271,7 @@ const showHistory = () => {
 };
 
 const showUpcoming = () => {
+  mainFormContainer.style.height = '10em';
   bookingsSubheader.innerText = 'Upcoming Stays';
   show([futureBookings]);
   hide([pastBookings, searchResults, totalCostSection]);
@@ -277,6 +280,7 @@ const showUpcoming = () => {
 };
 
 const showTotalCost = (bookings, section) => {
+  mainFormContainer.style.height = '10em';
   show([totalCostSection]);
   hide([pastBookings, futureBookings, searchResults])
   const totalCost = findTotalCost(bookings).toFixed(2);
@@ -301,6 +305,7 @@ const searchRooms = (event) => {
     alert('Please select a future date');
     return;
   }
+  mainFormContainer.style.height = '10em';
   bookingsSubheader.innerText = 'Available Rooms';
   hide([pastBookings, futureBookings, totalCostSection]);
   show([searchResults]);
