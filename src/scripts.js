@@ -1,6 +1,8 @@
 /* eslint-disable max-len */
 // SCRIPTS //
 
+// Note for feat/accessibilty: Line 171 automatically assigns customer 7.
+
 // IMPORTS //
 
 import './css/index.css';
@@ -70,6 +72,7 @@ const fetchAllData = () => {
                 roomsData = data.rooms;
               } else if (response.url.includes('/bookings')) {
                 bookingsData = data.bookings;
+                getLogin(event, customersData)
               }
             })
             .catch(error => {
@@ -87,9 +90,9 @@ window.addEventListener('load', fetchAllData);
 
 // EVENT LISTENERS //
 
-loginBtn.addEventListener('click', (event) => {
-  getLogin(event, customersData);
-});
+// loginBtn.addEventListener('click', (event) => {
+//   getLogin(event, customersData);
+// });
 
 btnHistory.addEventListener('click', () => {
   showHistory();
@@ -145,27 +148,27 @@ btnTotalCost.addEventListener('click', () => {
 // DOM UPDATES //
 
 const getLogin = (event, data) => {
-  event.preventDefault();
+  // event.preventDefault();
   let loginResult;
   const username = loginUsername.value;
   const password = loginPassword.value;
   
-  if (checkPassword(password)) {
-    loginResult = userLogin(username, data);
-  } else {
-    loginForm.reset();
-    alert('Incorrect password');
-    return;
-  }
+  // if (checkPassword(password)) {
+  //   loginResult = userLogin(username, data);
+  // } else {
+  //   loginForm.reset();
+  //   alert('Incorrect password');
+  //   return;
+  // }
 
-  if (!loginResult) {
-    loginForm.reset();
-    alert('Username not recognized') 
-    return;
-  }
+  // if (!loginResult) {
+  //   loginForm.reset();
+  //   alert('Username not recognized') 
+  //   return;
+  // }
   
   // TEMPORARY //
-  // loginResult = userLogin('customer7', data);
+  loginResult = userLogin('customer7', data);
 
 
   userBookings = findBookings(loginResult, roomsData, bookingsData);
