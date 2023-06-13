@@ -71,7 +71,6 @@ const fetchAllData = () => {
                 roomsData = data.rooms;
               } else if (response.url.includes('/bookings')) {
                 bookingsData = data.bookings;
-                getLogin(event, customersData);
               }
             })
             .catch(error => {
@@ -91,31 +90,31 @@ window.addEventListener('load', fetchAllData);
 
 loginBtn.addEventListener('click', (event) => {
   getLogin(event, customersData);
-})
+});
 
 btnHistory.addEventListener('click', () => {
   showHistory();
-})
+});
 
 btnUpcoming.addEventListener('click', () => {
   showUpcoming();
-})
+});
 
 pastBookings.addEventListener('click', (event) => {
   showBookingDetails(event, bookingsHistory, pastBookings);
-})
+});
 
 futureBookings.addEventListener('click', (event) => {
   showBookingDetails(event, bookingsUpcoming, futureBookings);
-})
+});
 
 btnSearchSubmit.addEventListener('click', (event) => {
   searchRooms(event);
-})
+});
 
 searchResults.addEventListener('click', (event) => {
   showRoomDetails(event, availableRooms);
-})
+});
 
 searchResults.addEventListener('click', (event) => {
   if (event.target.classList.contains('book__room')) {
@@ -147,27 +146,27 @@ btnTotalCost.addEventListener('click', () => {
 // DOM UPDATES //
 
 const getLogin = (event, data) => {
-  // event.preventDefault();
+  event.preventDefault();
   let loginResult;
   const username = loginUsername.value;
   const password = loginPassword.value;
   
-  // if (checkPassword(password)) {
-  //   loginResult = userLogin(username, data);
-  // } else {
-  //   loginForm.reset();
-  //   alert('Incorrect password');
-  //   return;
-  // }
+  if (checkPassword(password)) {
+    loginResult = userLogin(username, data);
+  } else {
+    loginForm.reset();
+    alert('Incorrect password');
+    return;
+  }
 
-  // if (!loginResult) {
-  //   loginForm.reset();
-  //   alert('Username not recognized') 
-  //   return;
-  // }
+  if (!loginResult) {
+    loginForm.reset();
+    alert('Username not recognized') 
+    return;
+  }
   
   // TEMPORARY //
-  loginResult = userLogin('customer7', data);
+  // loginResult = userLogin('customer7', data);
 
 
   userBookings = findBookings(loginResult, roomsData, bookingsData);

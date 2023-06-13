@@ -38,6 +38,8 @@ $radius-primary: .5em;
   }
 }
 
+// SCSS //
+
 body {
   margin: 0;
   padding: 0;
@@ -66,7 +68,7 @@ header {
 .header__right {
   display: flex;
   justify-content: space-around;
-  align-items: flex-end;
+  align-items: center;
   width: 15%;
   .header__username {
     font-size: 1.2em;
@@ -83,40 +85,39 @@ header {
   align-items: center;
   justify-content: center;
   height: 100vh;
-}
-
-.login__form {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  text-align: center;
-
-  h1 {
-    margin-top: 0;
-  }
-
-  input {
-    display: block;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    width: 100%;
-  }
-
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: $primary;
-    color: #ffffff;
+  .login__form {
+    background-color: $quaternary;
+    padding: 20px;
     border: $border-secondary;
-    border-radius: 4px;
-    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    h1 {
+      margin-top: 0;
 
-    &:hover {
-      background-color: darken($primary, 10%);
+    }
+    input {
+      display: block;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    button {
+      width: 70%;
+      padding: 10px;
+      background-color: lighten($tertiary, 10%);
+      color: black;
+      border: $border-secondary;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      &:hover {
+        background-color: darken($tertiary, 10%);
+        color: white;
+      }
     }
   }
 }
