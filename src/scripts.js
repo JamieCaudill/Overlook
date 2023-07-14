@@ -91,6 +91,7 @@ window.addEventListener('load', () => {
 
 loginBtn.addEventListener('click', (event) => {
   checkLogin(event, customersData);
+  console.log(customersData)
 });
 
 btnHistory.addEventListener('click', () => {
