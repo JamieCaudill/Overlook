@@ -511,10 +511,10 @@ const userLogin = (username, customersData) => {
 };
 
 const checkPassword = (password) => {
-  if (password === 'overlook2021') {
+  // if (password === 'overlook2021') {
     return true;
-  } 
-  return false;
+  // } 
+  // return false;
 };
 
 
@@ -751,9 +751,9 @@ let availableRooms = [];
 
 // API CALLS //
 
-const fetchCustomers = fetch('http://localhost:3001/api/v1/customers');
-const fetchRooms = fetch('http://localhost:3001/api/v1/rooms');
-const fetchBookings = fetch('http://localhost:3001/api/v1/bookings');
+const fetchCustomers = fetch('https://overlook-api.onrender.com/api/v1/customers');
+const fetchRooms = fetch('https://overlook-api.onrender.com/api/v1/rooms');
+const fetchBookings = fetch('https://overlook-api.onrender.com/api/v1/bookings');
 const fetchAllData = () => {
   Promise.all([fetchCustomers, fetchRooms, fetchBookings])
     .then(responses => {
