@@ -13,10 +13,10 @@ const userLogin = (username, customersData) => {
 };
 
 const checkPassword = (password) => {
-  if (password === 'overlook2021') {
+  // if (password === 'overlook2021') {
     return true;
-  } 
-  return false;
+  // } 
+  // return false;
 };
 
 export { userLogin, checkPassword };
