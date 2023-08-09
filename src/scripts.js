@@ -138,8 +138,19 @@ const hide = (names) => {
 
 // DOM UPDATES //
 
+const loading = (customersData) => {
+  if (!customersData.length) {
+    loginBtn.disabled = true;
+    loginBtn.innerText = 'Loading...';
+  } else {
+    loginBtn.disabled = false;
+    loginBtn.innerText = 'Login';
+  }
+};
+
 const checkLogin = (event, data) => {
   event.preventDefault();
+  loading(customersData);
   if (checkPassword(loginPassword.value)) {
     currentCustomer = userLogin(loginUsername.value, data);
   } else {
