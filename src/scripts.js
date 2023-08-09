@@ -87,6 +87,7 @@ const fetchAllData = () => {
 
 window.addEventListener('load', () => {
   fetchAllData();
+  loading(customersData);
 });
 
 loginBtn.addEventListener('click', (event) => {
@@ -140,17 +141,15 @@ const hide = (names) => {
 
 const loading = (customersData) => {
   if (!customersData.length) {
-    loginBtn.disabled = true;
     loginBtn.innerText = 'Loading...';
-  } else {
-    loginBtn.disabled = false;
-    loginBtn.innerText = 'Login';
+    setTimeout(() => {
+      loginBtn.innerText = 'Login';
+    }, 10000);  
   }
 };
 
 const checkLogin = (event, data) => {
   event.preventDefault();
-  loading(customersData);
   if (checkPassword(loginPassword.value)) {
     currentCustomer = userLogin(loginUsername.value, data);
   } else {
