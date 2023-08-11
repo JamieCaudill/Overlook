@@ -58,6 +58,7 @@ const fetchCustomers = fetch('https://overlook-api.onrender.com/api/v1/customers
 const fetchRooms = fetch('https://overlook-api.onrender.com/api/v1/rooms');
 const fetchBookings = fetch('https://overlook-api.onrender.com/api/v1/bookings');
 const fetchAllData = () => {
+  loading(customersData);
   Promise.all([fetchCustomers, fetchRooms, fetchBookings])
     .then(responses => {
       responses.forEach(response => {
@@ -66,6 +67,7 @@ const fetchAllData = () => {
             .then(data => {
               if (response.url.includes('/customers')) {
                 customersData = data.customers;
+                loginBtn.innerText = 'Login';
               } else if (response.url.includes('/rooms')) {
                 roomsData = data.rooms;
               } else if (response.url.includes('/bookings')) {
@@ -142,9 +144,6 @@ const hide = (names) => {
 const loading = (customersData) => {
   if (!customersData.length) {
     loginBtn.innerText = 'Loading...';
-    setTimeout(() => {
-      loginBtn.innerText = 'Login';
-    }, 10000);  
   }
 };
 
