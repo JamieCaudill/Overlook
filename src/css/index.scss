@@ -41,6 +41,10 @@ $radius-primary: .5em;
 
 // SCSS //
 
+.screen__message {
+  display: none;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -252,4 +256,15 @@ footer {
 
 .hidden {
   display: none !important;
+}
+
+@media screen and (max-width: 600px) {
+  .login {
+    display: none;
+  }
+  .screen__message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

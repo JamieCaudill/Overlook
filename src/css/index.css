@@ -1,6 +1,10 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,600&family=Noto+Sans:wght@400;500;600;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;900&display=swap");
+.screen__message {
+  display: none;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -245,4 +249,15 @@ footer {
 
 .hidden {
   display: none !important;
+}
+
+@media screen and (max-width: 600px) {
+  .login {
+    display: none;
+  }
+  .screen__message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }/*# sourceMappingURL=index.css.map */
